@@ -3,6 +3,7 @@ import React from "react";
 import {Metadata} from "next";
 import UI from "@/components/UI";
 import Header from "@/components/Header";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: 'Create Next App',

@@ -13,8 +13,13 @@ export default function UI ({children}:{children:ReactNode}){
         type: 'light',
         theme: {
             colors: {
-                primary: "$pink400",
-                secondary: "$yellow600",
+                primary: "$blue600",
+                primaryLight: "$blue600",
+                primaryDark: "$blue800",
+                secondary: "#ff8100",
+                secondaryLight: "#ff8100",
+                secondaryDark: "$yellow500",
+                gradient: "linear-gradient(112deg, $blue600 -63.59%, #ff8100 -20.3%, $blue600 70.46%)"
             },
         }
     })
@@ -23,8 +28,13 @@ export default function UI ({children}:{children:ReactNode}){
         type: 'dark',
         theme: {
             colors: {
-                primary: "$blue700",
-                secondary: "$yellow600"
+                primary: "$blue600",
+                primaryLight: "$blue600",
+                primaryDark: "$blue800",
+                secondary: "#ff8100",
+                secondaryLight: "#ff8100",
+                secondaryDark: "$yellow500",
+                gradient: "linear-gradient(112deg, $blue600 -63.59%, #ff8100 -20.3%, $blue600 70.46%)"
             },
         }
     })
