@@ -3,8 +3,8 @@
 import {createTheme, NextUIProvider} from "@nextui-org/react";
 import {ReactNode} from "react";
 import {ThemeProvider} from "next-themes";
-import 'boxicons';
-
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false
 
 
 export default function UI ({children}:{children:ReactNode}){

@@ -3,30 +3,39 @@
 import {Button, Container, Grid, Spacer, Text, useTheme} from "@nextui-org/react";
 import gsap from "gsap";
 import {TextPlugin} from "gsap/TextPlugin";
+import {PixiPlugin} from "gsap/PixiPlugin";
 import {useEffect, useRef} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import * as PIXI from "pixi.js";
 
 
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(TextPlugin, PixiPlugin);
+PixiPlugin.registerPIXI(PIXI);
+
 
 const Home = () => {
     const textP = useRef<any>(null);
     const {theme,isDark} = useTheme();
-
     const tl = gsap.timeline({
         defaults:{
             stagger: .5,
-            duration: 3,
+            duration: 2,
         }});
-    const rand = gsap.utils.random(["var(--nextui-colors-secondaryLight)", "var(--nextui-colors-primaryLight)", "var(--nextui-colors-green500)"]);
+        
+    const randColor = gsap.utils.random(["var(--nextui-colors-secondaryLight)", "var(--nextui-colors-primaryLight)", "var(--nextui-colors-green500)"]);
+    const randText = gsap.utils.random(["portfolios", "UI", "designs"]);
 
     useEffect(() => {
-        console.log(rand)
+        
         const anime = gsap.context(()=>{
 
             tl.addLabel("start",1)
                 .to(textP!.current,{
+                    repeat: 1,
                     text: {
-                        value: "portfolios",
+                        value: randText,
                         preserveSpaces: true
                     },
                 }).addLabel("grad",2)
@@ -36,16 +45,19 @@ const Home = () => {
                     ease: "slow",
                     onComplete:()=>{
                         textP!.current.addEventListener("mouseover",()=>{
-                            tl.fromTo("#explore",{
-                                scale: .9,
-                            },{scale: 1});
+                            tl.fromTo("#explore",{ scale: .8,},{scale: 1});
                         })
                     }
                 },"-=2")
                 .addLabel("line",3)
                 .set(textP!.current,{
-                    textDecoration: `${rand} wavy underline`,
+                    textDecoration: `${randColor} wavy underline`,
                 },"grad+=1");
+
+                gsap.fromTo("body",{
+                    repeat: 3,
+                },{})
+
         });
 
         return () => anime.revert();
@@ -58,7 +70,7 @@ const Home = () => {
           <Grid.Container gap={2} css={{minHeight: "90vh"}} justify={"center"} direction={"column"}>
               <Grid xs={12}>
                   <Text h1 css={{
-                      lineHeight: 1.1,
+                      lineHeight: 1.2,
                       paddingTop: "$2",
                       paddingBottom: "$2",
                       "@xs":{
@@ -91,16 +103,13 @@ const Home = () => {
                   }
               }}>
                   <Button auto rounded shadow={isDark} size={"xl"} id={"explore"}
-                          color={"gradient"} iconRight={<box-icon type={"solid"} name='right-arrow-alt' size={'md'}
-                                                                  color={theme?.colors.text.value}
-                                                                  animation={"tada-hover"}></box-icon>}>
+                          color={"gradient"} iconRight={<FontAwesomeIcon icon={faArrowRight} className="fa-rotate"/>}>
                       Explore more
                   </Button>
                   <Button ghost rounded auto size={"xl"}
                           color={"gradient"}
                           css={{"&:hover":{ background: "$secondaryLight"},}}
-                          icon={<box-icon type={"logo"} name={"github"} size={"md"}
-                                          color={theme?.colors.text.value}></box-icon>}>
+                          icon={<FontAwesomeIcon icon={faGithub} size={"lg"}/>}>
                       Github
                   </Button>
               </Grid>
