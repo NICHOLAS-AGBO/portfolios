@@ -1,0 +1,14 @@
+.strokeGrad{
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-color: transparent;
+    background-clip: content-box, border-box;
+    border: none;
+}
+
+h1,h2,h3,h4,h5,h6{
+    line-height: normal;
+}

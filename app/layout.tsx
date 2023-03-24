@@ -4,7 +4,7 @@ import {Metadata} from "next";
 import UI from "@/components/UI";
 import Header from "@/components/Header";
 import '@fortawesome/fontawesome-svg-core/styles.css'
-
+import { Roboto } from "next/font/google";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,6 +13,17 @@ export const metadata: Metadata = {
   applicationName: 'Portfolios'
 }
 
+
+
+const font = Roboto({
+  subsets: ['latin'], 
+  display: 'swap', 
+  weight: "500", 
+  preload: true, 
+  variable: "--fsText",
+  fallback: ["var(--nextui-fonts-sans)"]
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={font.className}>
       <UI>
           <Header/>
         {children}

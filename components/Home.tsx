@@ -3,37 +3,42 @@
 import {Button, Container, Grid, Spacer, Text, useTheme} from "@nextui-org/react";
 import gsap from "gsap";
 import {TextPlugin} from "gsap/TextPlugin";
-import {PixiPlugin} from "gsap/PixiPlugin";
 import {useEffect, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import * as PIXI from "pixi.js";
+import { Ubuntu } from "next/font/google";
+import { Bounce } from "gsap/all";
 
 
-gsap.registerPlugin(TextPlugin, PixiPlugin);
-PixiPlugin.registerPIXI(PIXI);
+gsap.registerPlugin(TextPlugin);
 
+const Title = Ubuntu({
+    subsets: ['latin'], 
+    display: 'swap', 
+    weight: "700", 
+    preload: true, 
+    variable: "--fsUbuntu700"
+});
 
 const Home = () => {
     const textP = useRef<any>(null);
     const {theme,isDark} = useTheme();
+
+
     const tl = gsap.timeline({
         defaults:{
-            stagger: .5,
             duration: 2,
         }});
         
-    const randColor = gsap.utils.random(["var(--nextui-colors-secondaryLight)", "var(--nextui-colors-primaryLight)", "var(--nextui-colors-green500)"]);
-    const randText = gsap.utils.random(["portfolios", "UI", "designs"]);
+    const randColor = gsap.utils.random(["var(--nextui-colors-secondaryLight)", "var(--nextui-colors-primaryLight)", "var(--nextui-colors-purple500)"]);
+    const randText = gsap.utils.random(["portfolios", "UI design"]);
 
     useEffect(() => {
-        
-        const anime = gsap.context(()=>{
 
+        const anime = gsap.context(()=>{
             tl.addLabel("start",1)
                 .to(textP!.current,{
-                    repeat: 1,
                     text: {
                         value: randText,
                         preserveSpaces: true
@@ -45,20 +50,19 @@ const Home = () => {
                     ease: "slow",
                     onComplete:()=>{
                         textP!.current.addEventListener("mouseover",()=>{
-                            tl.fromTo("#explore",{ scale: .8,},{scale: 1});
-                        })
+                            tl.addLabel("exp", 4).fromTo("#explore",{ 
+                                rotate: -5,
+                            },{rotate: 0, ease: Bounce.easeIn});
+                        });
                     }
-                },"-=2")
-                .addLabel("line",3)
+                },"-=2").addLabel("line",3)
                 .set(textP!.current,{
                     textDecoration: `${randColor} wavy underline`,
                 },"grad+=1");
 
-                gsap.fromTo("body",{
-                    repeat: 3,
-                },{})
+                
 
-        });
+            });
 
         return () => anime.revert();
 
@@ -66,25 +70,32 @@ const Home = () => {
 
 
   return(
-      <Container as={"section"} sm>
-          <Grid.Container gap={2} css={{minHeight: "90vh"}} justify={"center"} direction={"column"}>
+    <section style={{borderBottom: isDark?"solid 1px rgba(255,255,255,.15)":"solid 1px lightgray"}}>
+      <Container sm>
+          <Grid.Container gap={1} css={{
+            minHeight: "85vh",
+            cursor: "default",
+            py: "$xl",
+            "@smMax":{
+            minHeight: "90vh"
+          }}} justify={"center"} direction={"column"}>
               <Grid xs={12}>
-                  <Text h1 css={{
+                  <Text h1 className={Title.className} css={{
                       lineHeight: 1.2,
-                      paddingTop: "$2",
-                      paddingBottom: "$2",
+                      paddingTop: "$1",
+                      paddingBottom: "$1",
                       "@xs":{
                           fontSize: "$7xl",
                           paddingTop: "$4",
                           paddingBottom: "$4",
                       }
-                  }} weight={"bold"}>
-                      Get awesome <Text ref={textP} id={"pText"} as={"span"} onMouseOver={()=>tl.play(2)}
-                                        css={{textGradient: "45deg, $primaryLight 20%, $secondaryLight 50%"}}></Text> for your career !
+                  }}>
+                      Get awesome <Text ref={textP} id={"pText"} as={"span"} 
+                      onMouseOver={()=>tl.play(2)} css={{textGradient: "45deg, $primaryLight 20%, $secondaryLight 50%"}}></Text> for your career !
                   </Text>
               </Grid>
               <Grid xs={12}>
-                  <Text>
+                  <Text size={"$lg"}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Mauris a interdum nibh. Vivamus non urna condimentum, pulvinar erat ut,
                       mattis dui. Vestibulum eu tellus eu odio posuere efficitur.
@@ -96,6 +107,7 @@ const Home = () => {
                   alignItems: "center",
                   gap: "$lg",
                   flexWrap: "wrap",
+                  py: "$xl",
                   "@xsMax":{
                       "&>button":{
                           flexGrow: 1
@@ -103,7 +115,10 @@ const Home = () => {
                   }
               }}>
                   <Button auto rounded shadow={isDark} size={"xl"} id={"explore"}
-                          color={"gradient"} iconRight={<FontAwesomeIcon icon={faArrowRight} className="fa-rotate"/>}>
+                          color={"gradient"} iconRight={<FontAwesomeIcon icon={faArrowRight} 
+                          onMouseOver={(e)=>{e.currentTarget.classList.add("fa-shake")}}
+                          onMouseOut={(e)=>{e.currentTarget.classList.remove("fa-shake")}}
+                          />}>
                       Explore more
                   </Button>
                   <Button ghost rounded auto size={"xl"}
@@ -119,6 +134,7 @@ const Home = () => {
 
           </Grid.Container>
       </Container>
+    </section>
   );
 }
 
