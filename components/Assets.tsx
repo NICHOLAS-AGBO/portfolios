@@ -7,12 +7,14 @@ import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import * as PIXI from "pixi.js";
 import Link from "next/link";
+import { useEffect } from "react";
 
 gsap.registerPlugin(PixiPlugin);
 PixiPlugin.registerPIXI(PIXI);
 
-const app = new PIXI.Application({autoStart: true})
-const laptop = new PIXI.ImageResource("/img/laptop.png");
+const app = new PIXI.Application({autoStart: true, width: 200, height: 200})
+const laptop = PIXI.Sprite.from("/img/laptop.png",{width: 50, height: 50, pixiIdPrefix: "nick"});
+app.stage.addChild(laptop);
 
 console.log(laptop);
 
@@ -25,6 +27,19 @@ const ULink = styled(Link,{
         gap: "$3"
     }
 });
+
+useEffect(()=>{
+const animeImg = document.querySelector("#animeImg");
+const view:any = app.view;
+
+animeImg!.appendChild(view);
+
+
+
+    
+})
+
+
 
     return(
     <Container md css={{"@xsMax":{px: "$3"}}}>

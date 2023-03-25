@@ -22,7 +22,7 @@ const Title = Ubuntu({
 
 const Home = () => {
     const textP = useRef<any>(null);
-    const {theme,isDark} = useTheme();
+    const {isDark} = useTheme();
 
 
     const tl = gsap.timeline({
