@@ -40,8 +40,8 @@ const cardLabel:CSS = {
     padding: "$1",
     backgroundImage: "linear-gradient(var(--nextui-colors-background), var(--nextui-colors-background)), var(--nextui-colors-gradient)",
     borderRadius: "$rounded",
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"

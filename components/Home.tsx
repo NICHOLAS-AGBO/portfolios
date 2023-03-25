@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Ubuntu } from "next/font/google";
-import { Bounce } from "gsap/all";
 
 
 gsap.registerPlugin(TextPlugin);
@@ -52,7 +51,7 @@ const Home = () => {
                         textP!.current.addEventListener("mouseover",()=>{
                             tl.addLabel("exp", 4).fromTo("#explore",{ 
                                 rotate: -5,
-                            },{rotate: 0, ease: Bounce.easeIn});
+                            },{rotate: 0, ease: "power1.inOut"});
                         });
                     }
                 },"-=2").addLabel("line",3)
@@ -71,7 +70,7 @@ const Home = () => {
 
   return(
     <section style={{borderBottom: isDark?"solid 1px rgba(255,255,255,.15)":"solid 1px lightgray"}}>
-      <Container sm>
+      <Container sm css={{"@xsMax":{px: "$3"}}}>
           <Grid.Container gap={1} css={{
             minHeight: "85vh",
             cursor: "default",

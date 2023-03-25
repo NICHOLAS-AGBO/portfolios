@@ -24,74 +24,70 @@ const Services = ()=>{
     const {isDark} = useTheme();
     const tlBox = gsap.timeline({defaults:{
         stagger: 1,
+        autoAlpha: 0,
     }});
 
     useEffect(()=>{
-        const ctx = gsap.context(()=>{
             const mx = gsap.matchMedia("body");
+            const breakPoint = 900;
 
-            mx.add("(min-width: 900px)",(ct)=>{
-                tlBox.addLabel("startMX", 1).from(gsap.utils.toArray(".sBox"),{
-                    yPercent: 50,
-                    autoAlpha: 0,
-                    ease: "power3.inOut",  
+            mx.add({
+                isDesktop: `(min-width: ${breakPoint}px)`,
+                isMobile: `(max-width: ${breakPoint -1}px)`,
+                reduceMotion: "(prefers-reduced-motion: reduce)"
+            },(ctx)=>{
+                if (ctx.conditions) {
+                const {isDesktop,isMobile,reduceMotion} = ctx.conditions;
+
+                tlBox.from(gsap.utils.toArray(".sBox"),{
+                        yPercent: isDesktop?30:0, 
+                        ease: isMobile?"bounce.out":"power3.inOut",
+                        duration: reduceMotion?0:isMobile?3:1,
+                        scale: isDesktop?1:0.8,  
                     scrollTrigger:{
-                        start: "-100 top",
+                        start: isDesktop?"-50 top":"100 top",
                         end: "+=100%",
                         trigger: "#sCont",
-                        scrub: true
+                        once: isDesktop,
                     }
-                })
-            }).add("(max-width: 899px)",(ct)=>{
-                tlBox.addLabel("endMX", 2).fromTo(gsap.utils.toArray(".sBox"),{
-                    ease: "bounce.out",
-                    duration: 3,
-                    scale: 0.8,  
-                    scrollTrigger:{
-                        start: "200 top",
-                        end: "+=100%",
-                        trigger: "#sCont",
-                        scrub: true
-                    }
-                },{
-                    autoAlpha: 1,
-                    scale: 1
-                })
-            })
+                });
+                
+                
+                }
 
+            });
 
-});
-        
-window.addEventListener("resize",()=>ScrollTrigger.refresh(true));
+            ScrollTrigger.refresh(true);
 
-        return ()=>ctx.revert();
+        return ()=>mx.revert();
     });
 
 
     return(
-    <Container md css={{py: "$3xl"}} id="sCont">
+    <Container md css={{py: "$3xl", "@xsMax":{px: "$3"}}} id="sCont">
     
 <Text h2 size={"$5xl"} className={Title.className} css={{
     textAlign: "center",
     "@smMax":{
         fontSize: "$4xl",
+        px: "$1"
     }
     }}>What to know about our services ?</Text>
 <Spacer y={3}/>
 <Grid.Container gap={3} justify="center" css={{py: "$5"}}>
 
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "95% !important"}, visibility: "hidden"}} 
+<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
 xs={9} sm={5} md={3.5} className={"sBox"}>
     <Card css={stroked} isPressable className="strokeGrad">
 <Card.Header>
     <Row gap={1} align="center">
         <Col span={3}>
-    <Text as={"span"} size={"$3xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
+    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
         1
     </Text>
         </Col>
         <Col span={8}>
-            <Text h3 size={"$3xl"} weight={"hairline"} as={"p"}>Awesome UI</Text>
+            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Awesome UI</Text>
         </Col>
     </Row>
 </Card.Header>
@@ -106,18 +102,18 @@ xs={9} sm={5} md={3.5} className={"sBox"}>
     </Card>
 </Grid>
 
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "95% !important"}, visibility: "hidden"}} 
+<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
 xs={9} sm={5} md={3.5} className={"sBox"}>
     <Card css={stroked} isPressable className="strokeGrad">
 <Card.Header>
     <Row gap={1} align="center">
         <Col span={3}>
-    <Text as={"span"} size={"$3xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
+    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
         2
     </Text>
         </Col>
         <Col span={8}>
-            <Text h3 size={"$3xl"} weight={"hairline"} as={"p"}>Free templates</Text>
+            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Free templates</Text>
         </Col>
     </Row>
 </Card.Header>
@@ -132,18 +128,18 @@ xs={9} sm={5} md={3.5} className={"sBox"}>
     </Card>
 </Grid>
 
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "95% !important"}, visibility: "hidden"}} 
+<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
 xs={9} sm={5} md={3.5} className={"sBox"}>
     <Card css={stroked} isPressable className="strokeGrad">
 <Card.Header>
     <Row gap={1} align="center">
         <Col span={3}>
-    <Text as={"span"} size={"$3xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
+    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
         3
     </Text>
         </Col>
         <Col span={8}>
-            <Text h3 size={"$3xl"} weight={"hairline"} as={"p"}>Dark theme</Text>
+            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Dark theme</Text>
         </Col>
     </Row>
 </Card.Header>
@@ -158,18 +154,18 @@ xs={9} sm={5} md={3.5} className={"sBox"}>
     </Card>
 </Grid>
 
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "95% !important"}, visibility: "hidden"}} 
+<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
 xs={9} sm={5} md={0} className={"sBox"}>
     <Card css={stroked} isPressable className="strokeGrad">
 <Card.Header>
     <Row gap={1} align="center">
         <Col span={3}>
-    <Text as={"span"} size={"$3xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
+    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
         4
     </Text>
         </Col>
         <Col span={8}>
-            <Text h3 size={"$3xl"} weight={"hairline"} as={"p"}>Dark theme</Text>
+            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Dark theme</Text>
         </Col>
     </Row>
 </Card.Header>
