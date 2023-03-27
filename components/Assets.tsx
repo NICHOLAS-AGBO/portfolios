@@ -86,7 +86,7 @@ setMotion(reducedMotion);
         duration: reducedMotion?0:1,
         scrollTrigger:{
             trigger: "#uiCont",
-            start: "-200 top",
+            start: isMobile?"top top":"-200 top",
             end: "+=100%",
             once: !isMobile,
         }
