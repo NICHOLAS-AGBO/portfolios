@@ -12,7 +12,7 @@ const Load = ()=>{
         css={{
         minHeight: "100vh", 
         background: "$background", 
-        position: "absolute", 
+        position: "fixed", 
         top: "$0",
         left: "$0",
         zIndex: "$max"

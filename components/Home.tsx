@@ -1,6 +1,6 @@
 'use client';
 
-import {Button, Container, Grid, Spacer, Text, useTheme} from "@nextui-org/react";
+import {Button, Container, Grid, Text, useTheme} from "@nextui-org/react";
 import gsap from "gsap";
 import {TextPlugin} from "gsap/TextPlugin";
 import {useEffect, useRef} from "react";
@@ -8,9 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Ubuntu } from "next/font/google";
+import { SlowMo } from "gsap/EasePack";
 
 
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(TextPlugin, SlowMo);
 
 const Title = Ubuntu({
     subsets: ['latin'], 
@@ -37,26 +38,39 @@ const Home = () => {
 
         const anime = gsap.context(()=>{
             tl.addLabel("start",1)
-                .to(textP!.current,{
+                .fromTo(textP!.current,{
+                    duration: 5,
                     text: {
                         value: randText,
                         preserveSpaces: true
                     },
-                }).addLabel("grad",2)
-                .from(textP!.current,{
-                    duration: 5,
+                    ease: "power1.inOut"
+                },{
+                    repeat: -1,
                     backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-primaryLight)",
-                    ease: "slow",
-                    onComplete:()=>{
-                        textP!.current.addEventListener("mouseover",()=>{
-                            tl.addLabel("exp", 4).fromTo("#explore",{ 
-                                rotate: -5,
-                            },{rotate: 0, ease: "power1.inOut"});
-                        });
-                    }
-                },"-=2").addLabel("line",3)
+                    keyframes: [
+                        {text: {value: "UI design", preserveSpaces: true},
+                        ease: "slow(0.5, .1)",
+                        backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-primaryLight)", duration: 5}, 
+                        {text: {value: "portfolios", preserveSpaces: true}, delay: 2,
+                        ease: "slow(0.5, 0.8, true)",
+                        backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-yellow800) 70%", duration: 5}, 
+                ],
+                onComplete:()=>{
+                    textP!.current.addEventListener("mouseover",()=>{
+                        tl.addLabel("exp", 4).fromTo("#explore",{ 
+                            rotate: -5,
+                        },{rotate: 0, ease: "power1.inOut"});
+                    });
+                }
+                })
+                .addLabel("line",2)
                 .set(textP!.current,{
                     textDecoration: `${randColor} wavy underline`,
+                    keyframes: [
+                        {textDecoration: `var(--nextui-colors-secondaryLight) wavy underline`, duration: .5},
+                        {textDecoration: `var(--nextui-colors-primaryLight) wavy underline`, duration: .5, delay: 1},
+                    ]
                 },"grad+=1");
 
                 

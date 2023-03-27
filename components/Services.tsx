@@ -1,6 +1,7 @@
 "use client";
 
 import { cardLabel, stroked } from "@/utils/Styles";
+import ANIME_BREAKPOINTS from "@/utils/constants";
 import { Card, Col, Container, Grid, Row, Spacer, Text, useTheme } from "@nextui-org/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,17 +30,12 @@ const Services = ()=>{
 
     useEffect(()=>{
             const mx = gsap.matchMedia("body");
-            const breakPoint = 900;
 
-            mx.add({
-                isDesktop: `(min-width: ${breakPoint}px)`,
-                isMobile: `(max-width: ${breakPoint -1}px)`,
-                reduceMotion: "(prefers-reduced-motion: reduce)"
-            },(ctx)=>{
+            mx.add(ANIME_BREAKPOINTS,(ctx)=>{
                 if (ctx.conditions) {
                 const {isDesktop,isMobile,reduceMotion} = ctx.conditions;
 
-                tlBox.from(gsap.utils.toArray(".sBox"),{
+                tlBox.addLabel("box").from(gsap.utils.toArray(".sBox"),{
                         yPercent: isDesktop?30:0, 
                         ease: isMobile?"bounce.out":"power3.inOut",
                         duration: reduceMotion?0:isMobile?3:1,
@@ -69,7 +65,7 @@ const Services = ()=>{
 <Text h2 size={"$5xl"} className={Title.className} css={{
     textAlign: "center",
     "@smMax":{
-        fontSize: "$4xl",
+        fontSize: "$3xl",
         px: "$1"
     }
     }}>What to know about our services ?</Text>
