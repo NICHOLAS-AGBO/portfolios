@@ -19,7 +19,6 @@ const Contact = ()=>{
 <Grid.Container direction="column" gap={1} alignItems="center" justify="center" css={{
     height: "300px",
     border: "2px $white solid",
-    // maxWidth: "96%",
     mx: "auto"
     }}>
 

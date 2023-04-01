@@ -118,11 +118,11 @@ tlUI.addLabel("ui_btn")
 .from(".ui_btn",{
 autoAlpha: 0,
 yPercent: 30,
-},"ui2-=2")
+},"ui2")
 .set(".ui_btn",{
     position: "absolute",
     top: 60,
-    left: 30,
+    left: 25,
     zIndex: 1,
     width: "15%",
     height: "auto"
@@ -133,11 +133,11 @@ yPercent: 30,
 .from(".ui_login",{
 autoAlpha: 0,
 xPercent: 20,
-},"ui_btn-=1")
+},"ui_btn")
 .set(".ui_login",{
     position: "absolute",
     bottom: 5,
-    right: 50,
+    right: 25,
     zIndex: 1,
     width: "20%",
     height: "auto"
@@ -152,10 +152,10 @@ stagger: .5
 .set(".ui_bar",{
     position: "absolute",
     top: -10,
-    left: "37.5%",
+    left: "37%",
     right: "50%",
     zIndex: 1,
-    width: "25%",
+    width: "26%",
     height: "auto"
 },"ui3-=3")
 .to(".ui_title",{
@@ -165,7 +165,7 @@ stagger: .5
         value: "UI/UX",
         preserveSpaces: true,
     },
-},screen.isMobile?"animeUI-=1":"ui1-=1")
+},screen.isMobile?"animeUI-=3":"ui1-=3")
 .addLabel("end")
 .to(".theme_switch",{
     autoAlpha: 1
@@ -202,7 +202,7 @@ css={{flexWrap: "wrap-reverse", rowGap: "3rem"}} className="animeUI invisible">
     outline: "2px solid var(--nextui-colors-primaryLight)",
     outlineOffset: 6,
     top: -15,
-    right: "15%",
+    right: "8%",
     width: 38,
     height: 38,
     p: "$1",
@@ -219,7 +219,7 @@ css={{flexWrap: "wrap-reverse", rowGap: "3rem"}} className="animeUI invisible">
 <Row justify="center">
     {
     UI.map((url,id)=>(
-<Col key={id} span={3}>
+<Col key={id} span={3.5}>
 <Image src={url} alt={url+" image"} className="ui_ invisible" />
 </Col>
     ))
@@ -230,7 +230,7 @@ css={{flexWrap: "wrap-reverse", rowGap: "3rem"}} className="animeUI invisible">
 
 </Grid>
 
-<Grid xs={12} sm={5} md={5.5} css={{display: "block !important"}}>
+<Grid xs={12} sm={5} md={6} css={{display: "block !important"}}>
     
 <Text className="ui_title" h2 size={"$7xl"} weight={"hairline"} css={{
     textAlign: "center",
