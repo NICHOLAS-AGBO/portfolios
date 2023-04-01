@@ -19,7 +19,7 @@ export default function UI ({children}:{children:ReactNode}){
                 secondary: "#ff8100",
                 secondaryLight: "#ff8100",
                 secondaryDark: "$yellow500",
-                gradient: "linear-gradient(112deg, $blue600 -63.59%, #ff8100 -20.3%, $blue600 70.46%)"
+                gradient: "linear-gradient(112deg, $blue600 -50.59%, #ff8100 -20.3%, $blue600 50.46%)"
             },
         }
     })

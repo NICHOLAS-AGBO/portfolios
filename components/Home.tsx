@@ -17,8 +17,7 @@ const Title = Ubuntu({
     subsets: ['latin'], 
     display: 'swap', 
     weight: "700", 
-    preload: true, 
-    variable: "--fsUbuntu700"
+    preload: true
 });
 
 const Home = () => {
@@ -32,7 +31,7 @@ const Home = () => {
         }});
         
     const randColor = gsap.utils.random(["var(--nextui-colors-secondaryLight)", "var(--nextui-colors-primaryLight)", "var(--nextui-colors-purple500)"]);
-    const randText = gsap.utils.random(["portfolios", "UI design"]);
+    const randText = gsap.utils.random(["portfolios", "designs"]);
 
     useEffect(() => {
 
@@ -49,8 +48,8 @@ const Home = () => {
                     repeat: -1,
                     backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-primaryLight)",
                     keyframes: [
-                        {text: {value: "UI design", preserveSpaces: true},
-                        ease: "slow(0.5, .1)",
+                        {text: {value: "designs", preserveSpaces: true},
+                        ease: "power3.in",
                         backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-primaryLight)", duration: 5}, 
                         {text: {value: "portfolios", preserveSpaces: true}, delay: 2,
                         ease: "slow(0.5, 0.8, true)",
@@ -98,19 +97,22 @@ const Home = () => {
                       paddingTop: "$1",
                       paddingBottom: "$1",
                       "@xs":{
-                          fontSize: "$7xl",
+                          fontSize: "$6xl",
                           paddingTop: "$4",
                           paddingBottom: "$4",
+                      },
+                      "@md":{
+                        fontSize: "5.3rem",
                       }
                   }}>
                       Get awesome <Text ref={textP} id={"pText"} as={"span"} 
-                      onMouseOver={()=>tl.play(2)} css={{textGradient: "45deg, $primaryLight 20%, $secondaryLight 50%"}}></Text> for your career !
+                      css={{textGradient: "45deg, $primaryLight 20%, $secondaryLight 50%"}}></Text> for your career !
                   </Text>
               </Grid>
               <Grid xs={12}>
-                  <Text size={"$lg"}>
+                  <Text size={"$lg"} css={{"@md":{maxWidth: 650}}}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Mauris a interdum nibh. Vivamus non urna condimentum, pulvinar erat ut,
+                      Mauris a interdum nibh. Vivamus non urna condimentum,
                       mattis dui. Vestibulum eu tellus eu odio posuere efficitur.
                   </Text>
               </Grid>

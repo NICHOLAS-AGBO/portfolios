@@ -16,10 +16,16 @@ const Header = ()=>(
                 <Image src={next13} alt={"nextjs_v13"} width={30} title={"NEXTJS v13"}/>
             </Link>
         </Navbar.Brand>
-        <Navbar.Content>
-            <Navbar.Link>
+        <Navbar.Content css={{"&>a:hover":{textDecoration: "underline"}}}>
+            <Link href={"/portfolios"} style={{color: "inherit"}}>
+                Portfolios
+            </Link>
+            <Link href={"/roadmap"} style={{color: "inherit"}}>
+                Roadmap
+            </Link>
+            <Link href={"/about"} style={{color: "inherit"}}>
                 About us
-            </Navbar.Link>
+            </Link>
         </Navbar.Content>
     </Navbar>
 );

@@ -2,7 +2,7 @@
 
 import { cardLabel, stroked } from "@/utils/Styles";
 import ANIME_BREAKPOINTS from "@/utils/constants";
-import { Card, Col, Container, Grid, Row, Spacer, Text, useTheme } from "@nextui-org/react";
+import { Card, Col, Container, Grid, Row, Spacer, Text } from "@nextui-org/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Ubuntu } from "next/font/google";
@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Title = Ubuntu({
+export const Title = Ubuntu({
     subsets: ['latin'], 
     display: 'swap', 
     weight: "300", 
@@ -22,7 +22,6 @@ const Title = Ubuntu({
 
 
 const Services = ()=>{
-    const {isDark} = useTheme();
     const tlBox = gsap.timeline({defaults:{
         stagger: 1,
         autoAlpha: 0,
@@ -35,14 +34,15 @@ const Services = ()=>{
                 if (ctx.conditions) {
                 const {isDesktop,isMobile,reduceMotion} = ctx.conditions;
 
-                tlBox.addLabel("box").from(gsap.utils.toArray(".sBox"),{
-                        yPercent: isDesktop?30:0, 
+                tlBox.addLabel("box")
+                .from(gsap.utils.toArray(".sBox"),{
+                        rotateX: isDesktop?-100:0,
                         ease: isMobile?"bounce.out":"power3.inOut",
                         duration: reduceMotion?0:isMobile?3:1,
                         scale: isDesktop?1:0.8,  
                     scrollTrigger:{
                         start: isDesktop?"-50 top":"100 top",
-                        end: "+=100%",
+                        end: "100%+=100px",
                         trigger: "#sCont",
                         once: isDesktop,
                     }
