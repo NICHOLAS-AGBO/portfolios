@@ -9,7 +9,7 @@ const Contact = ()=>{
 
 
     return(
-<Container lg css={{
+<Container id="contact" lg css={{
     p: "$xl", my: "$5",
     backgroundImage: isDark?"linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)) ,url('/img/black_man_on_laptop.png')"
     : "linear-gradient(rgba(255,255,255,.65),rgba(255,255,255.35)) ,url('/img/black_man_on_laptop.png')", 

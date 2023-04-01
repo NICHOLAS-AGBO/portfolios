@@ -62,9 +62,8 @@ const tlUI = gsap.timeline({
         trigger: "#uiCont",
         start: "20 center",
         end: "100%+=5%",
-        endTrigger: "#uiCont",
-        // toggleActions: "play none restart none",
-        invalidateOnRefresh: true,
+        endTrigger: "#contact",
+        toggleActions: "play none restart none",
     },
     onComplete: runBeat,
 });
