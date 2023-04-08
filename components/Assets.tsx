@@ -2,7 +2,6 @@
 
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Col, Container, Grid, Row, Text, useTheme } from "@nextui-org/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCallback, useEffect, useState } from "react";
@@ -13,9 +12,10 @@ import ui_3 from "@/public/img/ui_3.png";
 import btn from "@/public/img/buttons.png";
 import login_img from "@/public/img/login.png";
 import bar from "@/public/img/slider.png";
-import { useTheme as toggleTheme } from "next-themes";
 import ANIME_BREAKPOINTS from "@/utils/constants";
 import { ExpoScaleEase } from "gsap/EasePack";
+import {Box, Container, Grid, IconButton, Stack, Typography, useColorScheme as toggleTheme} from "@mui/joy";
+import {DarkMode, LightMode} from "@mui/icons-material";
 
 gsap.registerPlugin(ExpoScaleEase, ScrollTrigger);
 
@@ -26,8 +26,7 @@ const UI = [ui_1,ui_2,ui_3];
 const Assets =()=>{
     
 
-const {setTheme} = toggleTheme();
-const {isDark} = useTheme();
+const {setMode, mode, systemMode} = toggleTheme();
 const [motion,setMotion] = useState(false);
 
 // SCALE ANIMATION FOR SOME UI IMAGES
@@ -151,7 +150,7 @@ stagger: .5
 },"ui_login-=1")
 .set(".ui_bar",{
     position: "absolute",
-    top: -10,
+    top: -15,
     left: "37%",
     right: "50%",
     zIndex: 1,
@@ -184,62 +183,58 @@ return ()=>mAnime.revert();
 
     return(
 
-    <Container id={"uiCont"} md css={{py: "$3xl" ,"@xsMax":{px: "$3"}}}>
-<Grid.Container justify="center" alignItems="center" gap={3} 
-css={{flexWrap: "wrap-reverse", rowGap: "3rem"}} className="animeUI invisible">
+    <Container maxWidth="lg" id={"uiCont"} sx={{py: 3}}>
+<Grid container justifyContent="center" alignItems="center" gap={2} 
+    sx={{flexWrap: "wrap-reverse"}} className="animeUI invisible">
 
 {/* ANIMATED IMAGES */}
-<Grid xs={12} className={"uiImg"} sm css={{position: "relative"}}>
+<Grid xs={12} className={"uiImg"} sm sx={{position: "relative"}}>
 <Image src={btn} alt={"ui_button image"} className="ui_btn invisible" />
 <Image src={login_img} alt={"ui_login image"} className="ui_login invisible" />
 <Image src={bar} alt={"ui_progressive_bar image"} className="ui_bar invisible" />
 
-<Button onPress={()=>setTheme(isDark?"light":"dark")} auto className="theme_switch" css={{
-    background: "$white",
-    color: "$primary",
+<IconButton onClick={()=>setMode(mode?"light":"dark")}
+            className="theme_switch" sx={{
+    background: "primary.white",
+    color: "secondary.main",
     position: "absolute",
-    borderRadius: "$rounded",
-    outline: "2px solid var(--nextui-colors-primaryLight)",
-    outlineOffset: 6,
+    borderRadius: "50%",
+    outline: "2px solid var(--mui-joy-palette-primary)",
+    outlineOffset: 3,
     top: -15,
-    right: "8%",
+    right: "15%",
     width: 38,
     height: 38,
-    p: "$1",
+    p: 1,
     zIndex: 1,
-    backdropFilter: "blur(8px)",
     visibility: "hidden"
 }}>
-    <FontAwesomeIcon icon={faSun} size="lg" className="fa-heart" style={{
-    outline: "solid 2rem rgba(255, 255, 255,.55)",
-    outlineOffset: "3rem"
-    }}/>
-</Button>
+    {mode||systemMode==="dark"?
+    <LightMode/>:<DarkMode/>
+    }
+</IconButton>
 
-<Row justify="center">
+<Stack justifyContent="center" flexDirection={"row"}>
     {
     UI.map((url,id)=>(
-<Col key={id} span={3.5}>
+<Box key={id} maxWidth={"25%"}>
 <Image src={url} alt={url+" image"} className="ui_ invisible" />
-</Col>
+</Box>
     ))
 }
 
-</Row>
+</Stack>
 
 
 </Grid>
 
-<Grid xs={12} sm={5} md={6} css={{display: "block !important"}}>
+<Grid xs={12} sm={5} md={6} sx={{display: "block !important"}}>
     
-<Text className="ui_title" h2 size={"$7xl"} weight={"hairline"} css={{
+<Typography className="ui_title" level="display2" fontWeight={"sm"} sx={{
     textAlign: "center",
-    "@smMax":{
-    px: "$1",
-    }
-    }}></Text>
+    }}></Typography>
 
-<Text size={"$lg"}>
+<Typography level={"subtitle1"}>
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aut doloribus in 
 inventore alias, natus quas consequuntur necessitatibus similique 
 voluptatum aliquam, accusamus suscipit. Tempore dolorem sapiente, iste vel voluptatem odio!
@@ -249,7 +244,7 @@ voluptatum aliquam, accusamus suscipit. Tempore dolorem sapiente, iste vel volup
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aut doloribus in 
 inventore alias, natus quas consequuntur necessitatibus similique 
 voluptatum aliquam, accusamus suscipit. Tempore dolorem sapiente, iste vel voluptatem odio!
-</Text>
+</Typography>
 </Grid>
 
 
@@ -257,7 +252,7 @@ voluptatum aliquam, accusamus suscipit. Tempore dolorem sapiente, iste vel volup
 
 
 
-</Grid.Container>
+</Grid>
 
 
 

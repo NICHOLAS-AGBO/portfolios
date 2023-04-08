@@ -2,7 +2,7 @@
 
 import { cardLabel, stroked } from "@/utils/Styles";
 import ANIME_BREAKPOINTS from "@/utils/constants";
-import { Card, Col, Container, Grid, Row, Spacer, Text } from "@nextui-org/react";
+import { Container, Grid, Typography } from "@mui/joy";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Ubuntu } from "next/font/google";
@@ -60,123 +60,40 @@ const Services = ()=>{
 
 
     return(
-    <Container md css={{py: "$3xl", "@xsMax":{px: "$3"}}} id="sCont">
+    <Container maxWidth={"md"} sx={{py: 3}} id="sCont">
     
-<Text h2 size={"$5xl"} className={Title.className} css={{
+<Typography level="h2" className={Title.className} sx={{
     textAlign: "center",
-    "@smMax":{
-        fontSize: "$3xl",
-        px: "$1"
-    }
-    }}>What to know about our services ?</Text>
-<Spacer y={3}/>
-<Grid.Container gap={3} justify="center" css={{py: "$5"}}>
+    }}>What to know about our services ?</Typography>
+<Grid container gap={3} justifyContent="center" sx={{py: 5}}>
 
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
-xs={9} sm={5} md={3.5} className={"sBox"}>
-    <Card css={stroked} isPressable className="strokeGrad">
+<Grid sx={{visibility: "hidden"}} xs={9} sm={5} md={3.5} className={"sBox"}>
+    {/* <Card sx={stroked} isPressable className="strokeGrad">
 <Card.Header>
     <Row gap={1} align="center">
         <Col span={3}>
-    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
+    <Typography as={"span"} size={"$2xl"} weight={"semibold"} sx={cardLabel} className="strokeGrad">
         1
-    </Text>
+    </Typography>
         </Col>
         <Col span={8}>
-            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Awesome UI</Text>
+            <Typography h3 size={"$3xl"} sx={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Awesome UI</Typography>
         </Col>
     </Row>
 </Card.Header>
 <Card.Divider/>
 <Card.Body>
-    <Text size={"$lg"}>
+    <Typography size={"$lg"}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat 
         quisquam quidem quos sit mollitia, fugiat expedita repellendus? Reprehenderit 
         eius, ullam illum itaque quos impedit voluptates amet tempore consectetur molestiae hic.
-    </Text>
+    </Typography>
 </Card.Body>
-    </Card>
+    </Card> */}
+
 </Grid>
 
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
-xs={9} sm={5} md={3.5} className={"sBox"}>
-    <Card css={stroked} isPressable className="strokeGrad">
-<Card.Header>
-    <Row gap={1} align="center">
-        <Col span={3}>
-    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
-        2
-    </Text>
-        </Col>
-        <Col span={8}>
-            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Free templates</Text>
-        </Col>
-    </Row>
-</Card.Header>
-<Card.Divider/>
-<Card.Body>
-    <Text size={"$lg"}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat 
-        quisquam quidem quos sit mollitia, fugiat expedita repellendus? Reprehenderit 
-        eius, ullam illum itaque quos impedit voluptates amet tempore consectetur molestiae hic.
-    </Text>
-</Card.Body>
-    </Card>
 </Grid>
-
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
-xs={9} sm={5} md={3.5} className={"sBox"}>
-    <Card css={stroked} isPressable className="strokeGrad">
-<Card.Header>
-    <Row gap={1} align="center">
-        <Col span={3}>
-    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
-        3
-    </Text>
-        </Col>
-        <Col span={8}>
-            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Dark theme</Text>
-        </Col>
-    </Row>
-</Card.Header>
-<Card.Divider/>
-<Card.Body>
-    <Text size={"$lg"}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat 
-        quisquam quidem quos sit mollitia, fugiat expedita repellendus? Reprehenderit 
-        eius, ullam illum itaque quos impedit voluptates amet tempore consectetur molestiae hic.
-    </Text>
-</Card.Body>
-    </Card>
-</Grid>
-
-<Grid css={{"@xsMax":{flexBasis: "100% !important", maxWidth: "100% !important"}, visibility: "hidden"}} 
-xs={9} sm={5} md={0} className={"sBox"}>
-    <Card css={stroked} isPressable className="strokeGrad">
-<Card.Header>
-    <Row gap={1} align="center">
-        <Col span={3}>
-    <Text as={"span"} size={"$2xl"} weight={"semibold"} css={cardLabel} className="strokeGrad">
-        4
-    </Text>
-        </Col>
-        <Col span={8}>
-            <Text h3 size={"$3xl"} css={{"@xsMax":{fontSize: "$2xl"}}} weight={"hairline"} as={"p"}>Dark theme</Text>
-        </Col>
-    </Row>
-</Card.Header>
-<Card.Divider/>
-<Card.Body>
-    <Text size={"$lg"}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat 
-        quisquam quidem quos sit mollitia, fugiat expedita repellendus? Reprehenderit 
-        eius, ullam illum itaque quos impedit voluptates amet tempore consectetur molestiae hic.
-    </Text>
-</Card.Body>
-    </Card>
-</Grid>
-
-</Grid.Container>
 
     </Container>
     );

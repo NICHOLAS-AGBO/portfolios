@@ -3,12 +3,13 @@
 import { faFacebook, faInstagram, faLinkedin, faPinterest, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Col, Container, Grid, Row, Text, Tooltip, useTheme } from "@nextui-org/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import {Box, Button, Container, Grid, Stack, Tooltip, Typography, useColorScheme} from "@mui/joy";
+import colors from "@mui/joy/colors";
 
 const Footer = ()=>{
-const {isDark,theme} = useTheme();
+const {mode} = useColorScheme();
 const [show,setShow] = useState(false);
 
 const moveUP = ()=> scrollTo({top: 0, behavior: "smooth"});
@@ -22,59 +23,61 @@ useEffect(()=>{
 
   return(
 <>
-        <Container as="footer" lg 
-        css={{mt: "$20",pt: "$8", 
-        borderTop: isDark?"solid 3px rgba(255,255,255,.15)":"solid 3px $secondaryLight", 
+        <Container as="footer" maxWidth={"lg"}
+        sx={{mt: "$20",pt: "$8",
+        borderTop: mode==="dark"?"solid 3px rgba(255,255,255,.15)":"solid 3px $secondaryLight",
         background: "$black", color: "$white"}}>
-<Grid.Container gap={3} wrap="wrap" css={{maxW: `${theme?.breakpoints.md}`}}>
+<Grid container gap={2}>
 
-<Grid css={{cursor: "default"}}>
-    <Text h5 css={{
-        color: "$secondaryLight"
-    }}>Portfolio UI</Text>
-    <Row css={{flexDirection: "column"}} as="ul">
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/"}>Home</Link></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/about"}>About us</Link></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/contact"}>Contact us</Link></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/contact"}>Privacy policy</Link></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/contact"}>Terms & Conditions</Link></Col>
-    </Row>
+<Grid sx={{cursor: "default"}}>
+    <Typography level={"h5"} sx={{
+        color: "secondary"
+    }}>Portfolio UI</Typography>
+    <Stack flexDirection={"column"} component="ul">
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/"}>Home</Link></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/about"}>About us</Link></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/contact"}>Contact us</Link></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/contact"}>Privacy policy</Link></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/contact"}>Terms & Conditions</Link></Box>
+    </Stack>
 </Grid>
 
-<Grid css={{cursor: "default"}}>
-    <Text h5 css={{
-        color: "$gray500"
-    }}>Explore</Text>
-    <Row css={{flexDirection: "column"}} as="ul">
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/templates"}>Templates</Link></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/ui"}>UI design</Link></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/components"}>Components</Link></Col>
-    </Row>
+<Grid sx={{cursor: "default"}}>
+    <Typography level={"h5"} sx={{
+        color: colors.grey[500]
+    }}>Explore</Typography>
+    <Stack flexDirection={"column"} component="ul">
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/templates"}>Templates</Link></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/ui"}>UI design</Link></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"/components"}>Components</Link></Box>
+    </Stack>
 </Grid>
 
 
-<Grid css={{cursor: "default"}}>
-    <Text h5 css={{
-        color: "$gray500"
-    }}>More</Text>
-    <Row css={{flexDirection: "column"}} as="ul">
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}>
-    <Tooltip animated={false} color={"secondary"} shadow placement="bottom" content="Nicson Digital Concept"><Link style={{color: "inherit"}} href={"https://ndcconcept.com"} target="_blank" referrerPolicy="no-referrer">NDCconcept</Link></Tooltip></Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"https://aquila.com"} target="_blank" referrerPolicy="no-referrer">Aquila</Link>
-</Col>
-<Col as="li" css={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}>
-<Tooltip animated={false} color={"secondary"} shadow placement="bottom" content="Dika Dika"><Link style={{color: "inherit"}} href={"https://dsqr.com"} target="_blank" referrerPolicy="no-referrer">Dsqr</Link></Tooltip>
-</Col>
-    </Row>
+<Grid sx={{cursor: "default"}}>
+    <Typography level={"h5"} sx={{
+        color: colors.grey[500]
+    }}>More</Typography>
+    <Stack flexDirection={"column"} component="ul">
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}>
+    <Tooltip color={"primary"} placement={"bottom"} title="Nicson Digital Concept">
+        <Link style={{color: "inherit"}} href={"https://ndcconcept.com"} target="_blank" referrerPolicy="no-referrer">NDCconcept</Link></Tooltip></Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}><Link style={{color: "inherit"}} href={"https://aquila.com"} target="_blank" referrerPolicy="no-referrer">Aquila</Link>
+</Box>
+<Box sx={{"&>a:hover":{textDecoration: "underline", color: "$primary !important"}, fontSize: "$sm", color: "$gray800"}}>
+<Tooltip color={"primary"} placement={"bottom"} title="Dika Dika">
+    <Link style={{color: "inherit"}} href={"https://dsqr.com"} target="_blank" referrerPolicy="no-referrer">Dsqr</Link></Tooltip>
+</Box>
+    </Stack>
 </Grid>
 
-</Grid.Container>
+</Grid>
 
 
             {
                 show&&
                     
-            <Button onPress={moveUP} auto color={"secondary"} css={{
+            <Button onClick={moveUP} color={"primary"} sx={{
                 width: 40,
                 height: 40,
                 p: "$5",
@@ -91,38 +94,38 @@ useEffect(()=>{
             }
         </Container>
         
-<Row justify="space-between" align="center" wrap="wrap" gap={3}
-css={{background: "linear-gradient(90deg, #000 -10%, #222222, #000 110%)", py: "$5", px: "$3", mx: 0}}>
-<Text size={"$sm"}>&copy; Portfolio UI {new Date().getFullYear()}</Text>
+<Stack justify="space-between" align="center" wrap="wrap" gap={3}
+sx={{background: "linear-gradient(90deg, #000 -10%, #222222, #000 110%)", py: "$5", px: "$3", mx: 0}}>
+<Typography level={"body2"}>&copy; Portfolio UI {new Date().getFullYear()}</Typography>
 
-<Row gap={1} css={{width: "auto", px: "$5", "&>div a": {color: "$secondaryLight"}}}>
-    <Col css={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
+<Stack gap={1} sx={{width: "auto", px: "$5", "&>div a": {color: "$secondaryLight"}}}>
+    <Box sx={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
     <Link href={"#"} target="_blank">
         <FontAwesomeIcon icon={faTwitter} size="sm"/>
     </Link>
-    </Col>
-    <Col css={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
+    </Box>
+    <Box sx={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
     <Link href={"#"} target="_blank">
         <FontAwesomeIcon icon={faLinkedin} size="sm"/>
     </Link>
-    </Col>
-    <Col css={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
+    </Box>
+    <Box sx={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
     <Link href={"#"} target="_blank">
         <FontAwesomeIcon icon={faInstagram} size="sm"/>
     </Link>
-    </Col>
-    <Col css={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
+    </Box>
+    <Box sx={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3", mx: "$2"}}>
     <Link href={"#"} target="_blank">
         <FontAwesomeIcon icon={faFacebook} size="sm"/>
     </Link>
-    </Col>
-    <Col css={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3"}}>
+    </Box>
+    <Box sx={{backgroundColor: "rgba(222,222,222,.25)", borderRadius: "$squared", p: "$1 $3"}}>
     <Link href={"#"} target="_blank">
         <FontAwesomeIcon icon={faPinterest} size="sm"/>
     </Link>
-    </Col>
-</Row>
-</Row>
+    </Box>
+</Stack>
+</Stack>
 
 </>
     );

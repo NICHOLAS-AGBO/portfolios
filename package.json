@@ -9,24 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-brands-svg-icons": "^6.3.0",
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@nextui-org/react": "^1.0.0-beta.12",
-    "@types/node": "18.15.5",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/joy": "^5.0.0-alpha.74",
+    "@mui/material": "^5.11.16",
+    "framer-motion": "^10.11.2",
     "gsap": "./gsap.tgz",
-    "next": "13.2.4",
-    "next-themes": "^0.2.1",
-    "pixi.js": "^7.2.2",
+    "three": "^0.151.2",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.33",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "three": "^0.151.2",
-    "typescript": "5.0.2"
+    "typescript": "5.0.4"
   }
 }

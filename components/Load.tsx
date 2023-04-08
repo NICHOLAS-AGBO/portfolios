@@ -1,30 +1,29 @@
 "use client";
 
-import { Container, Grid, Loading, useTheme } from "@nextui-org/react";
 import Image from "next/image";
 import vercel from "@/public/vercel.svg";
+import {CircularProgress, Container, Grid, Box} from "@mui/joy";
 
 
 const Load = ()=>{
-    const {theme, isDark} = useTheme();
     return (
-        <Container fluid 
-        css={{
+        <Container maxWidth={false}
+        sx={{
         minHeight: "100vh", 
-        background: "$background", 
         position: "fixed", 
-        top: "$0",
-        left: "$0",
-        zIndex: "$max"
+        top: 0,
+        left: 0,
+        zIndex: (theme)=>theme.zIndex.modal+100
         }}>
-    <Grid.Container css={{minHeight: "inherit"}} gap={1} justify="center" alignItems="center">
+    <Grid container sx={{minHeight: "inherit"}} gap={1} justifyContent="center" alignItems="center">
     <Grid>
-        <Image src={vercel} alt="vercel logo" width={150}/>
+    <CircularProgress size="lg" color="primary" thickness={3}>
+        <Box p={2}>
+            <Image src={vercel} alt="vercel logo" width={100}/>
+        </Box>
+    </CircularProgress>
     </Grid>
-    <Grid>
-    <Loading size="lg" color={"secondary"} />
     </Grid>
-    </Grid.Container>
         </Container>
     )
 }

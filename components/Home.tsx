@@ -1,14 +1,15 @@
 'use client';
 
-import {Button, Container, Grid, Text, useTheme} from "@nextui-org/react";
-import gsap from "gsap";
 import {TextPlugin} from "gsap/TextPlugin";
 import {useEffect, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Ubuntu } from "next/font/google";
 import { SlowMo } from "gsap/EasePack";
+import { Button, Container, Grid, Typography, useColorScheme } from "@mui/joy";
+import { GitHub } from "@mui/icons-material";
+import {gsap, random} from "gsap/dist/gsap";
+
 
 
 gsap.registerPlugin(TextPlugin, SlowMo);
@@ -22,7 +23,7 @@ const Title = Ubuntu({
 
 const Home = () => {
     const textP = useRef<any>(null);
-    const {isDark} = useTheme();
+    const {mode, systemMode} = useColorScheme();
 
 
     const tl = gsap.timeline({
@@ -30,8 +31,8 @@ const Home = () => {
             duration: 2,
         }});
         
-    const randColor = gsap.utils.random(["var(--nextui-colors-secondaryLight)", "var(--nextui-colors-primaryLight)", "var(--nextui-colors-purple500)"]);
-    const randText = gsap.utils.random(["portfolios", "designs"]);
+    const randColor = random(["var(--mui-joy-palette-secondary-main)", "var(--mui-joy-palette-primary-main)", "var(--mui-joy-palette-purple-500)"]);
+    const randText = random(["portfolios", "designs"]);
 
     useEffect(() => {
 
@@ -46,14 +47,14 @@ const Home = () => {
                     ease: "power1.inOut"
                 },{
                     repeat: -1,
-                    backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-primaryLight)",
+                    backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-primary-main)",
                     keyframes: [
                         {text: {value: "designs", preserveSpaces: true},
                         ease: "power3.in",
-                        backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-primaryLight)", duration: 5}, 
+                        backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-primary-main)", duration: 5},
                         {text: {value: "portfolios", preserveSpaces: true}, delay: 2,
                         ease: "slow(0.5, 0.8, true)",
-                        backgroundImage: "linear-gradient(35deg, var(--nextui-colors-secondaryLight) 50%, var(--nextui-colors-yellow800) 70%", duration: 5}, 
+                        backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-yellow-800) 70%", duration: 5},
                 ],
                 onComplete:()=>{
                     textP!.current.addEventListener("mouseover",()=>{
@@ -67,8 +68,8 @@ const Home = () => {
                 .set(textP!.current,{
                     textDecoration: `${randColor} wavy underline`,
                     keyframes: [
-                        {textDecoration: `var(--nextui-colors-secondaryLight) wavy underline`, duration: .5},
-                        {textDecoration: `var(--nextui-colors-primaryLight) wavy underline`, duration: .5, delay: 1},
+                        {textDecoration: `var(--mui-joy-palette-secondary-main) wavy underline`, duration: .5},
+                        {textDecoration: `var(--mui-joy-palette-primary-main) wavy underline`, duration: .5, delay: 1},
                     ]
                 },"grad+=1");
 
@@ -78,68 +79,48 @@ const Home = () => {
 
         return () => anime.revert();
 
-    }, [isDark]);
+    }, [mode]);
 
 
   return(
-    <section style={{borderBottom: isDark?"solid 1px rgba(255,255,255,.15)":"solid 1px lightgray"}}>
-      <Container sm css={{"@xsMax":{px: "$3"}}}>
-          <Grid.Container gap={1} css={{
-            minHeight: "85vh",
+    <section style={{borderBottom: mode||systemMode==="dark"?"solid 1px rgba(255,255,255,.15)":"solid 1px lightgray"}}>
+      <Container maxWidth={"md"}>
+          <Grid container gap={2} sx={{
+            minHeight: {xs: "85vh", sm: "90vh"},
             cursor: "default",
-            py: "$xl",
-            "@smMax":{
-            minHeight: "90vh"
-          }}} justify={"center"} direction={"column"}>
+            py: 3,
+            }} justifyContent={"center"} direction={"column"}>
               <Grid xs={12}>
-                  <Text h1 className={Title.className} css={{
-                      lineHeight: 1.2,
-                      paddingTop: "$1",
-                      paddingBottom: "$1",
-                      "@xs":{
-                          fontSize: "$6xl",
-                          paddingTop: "$4",
-                          paddingBottom: "$4",
-                      },
-                      "@md":{
-                        fontSize: "5.3rem",
-                      }
+                  <Typography level={"display1"} textAlign={"center"} className={Title.className} sx={{
+                      fontSize: (theme)=>({xs: theme.typography.h1, sm: theme.typography.display1}),
+                      fontWeight: 900
                   }}>
-                      Get awesome <Text ref={textP} id={"pText"} as={"span"} 
-                      css={{textGradient: "45deg, $primaryLight 20%, $secondaryLight 50%"}}></Text> for your career !
-                  </Text>
+                      Get awesome <Typography ref={textP} id={"pText"} sx={{
+                        WebkitBackgroundClip: "text",
+                        background:(theme)=> `linear-gradient(${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                        WebkitTextFillColor: "transparent"
+                      }}></Typography> for your career !
+                  </Typography>
               </Grid>
               <Grid xs={12}>
-                  <Text size={"$lg"} css={{"@md":{maxWidth: 650}}}>
+                  <Typography textAlign={"center"} mx={"auto"}
+                              sx={{maxWidth: {md: 650}}}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Mauris a interdum nibh. Vivamus non urna condimentum,
                       mattis dui. Vestibulum eu tellus eu odio posuere efficitur.
-                  </Text>
+                  </Typography>
               </Grid>
 
-              <Grid css={{
-                  d: "flex",
-                  alignItems: "center",
-                  gap: "$lg",
-                  flexWrap: "wrap",
-                  py: "$xl",
-                  "@xsMax":{
-                      "&>button":{
-                          flexGrow: 1
-                      }
-                  }
-              }}>
-                  <Button auto rounded shadow={isDark} size={"xl"} id={"explore"}
-                          color={"gradient"} iconRight={<FontAwesomeIcon icon={faArrowRight} 
+              <Grid display={"flex"} justifyContent={"center"} gap={2}>
+                  <Button id={"explore"} size={"lg"} sx={{backgroundColor: "secondary.main"}}
+                          endDecorator={<FontAwesomeIcon icon={faArrowRight}
                           onMouseOver={(e)=>{e.currentTarget.classList.add("fa-shake")}}
                           onMouseOut={(e)=>{e.currentTarget.classList.remove("fa-shake")}}
                           />}>
                       Explore more
                   </Button>
-                  <Button ghost rounded auto size={"xl"}
-                          color={"gradient"}
-                          css={{"&:hover":{ background: "$secondaryLight"},}}
-                          icon={<FontAwesomeIcon icon={faGithub} size={"lg"}/>}>
+                  <Button color={"primary"} size={"lg"} endDecorator={<GitHub/>}
+                          sx={{"&:hover":{ background: "$secondaryLight"},}}>
                       Github
                   </Button>
               </Grid>
@@ -147,7 +128,7 @@ const Home = () => {
 
 
 
-          </Grid.Container>
+          </Grid>
       </Container>
     </section>
   );
