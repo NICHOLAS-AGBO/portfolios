@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port=4000",
+    "dev": "next dev --port=4000 --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,17 +19,17 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.74",
     "@mui/material": "^5.11.16",
-    "framer-motion": "^10.11.2",
-    "gsap": "./gsap.tgz",
-    "three": "^0.151.2",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
-    "next": "13.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "eslint-config-next": "^13.3.0",
+    "framer-motion": "^10.11.2",
+    "gsap": "./gsap.tgz",
+    "next": "^13.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.151.2",
     "typescript": "5.0.4"
   }
 }

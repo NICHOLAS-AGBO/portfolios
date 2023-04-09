@@ -8,16 +8,16 @@ import { Ubuntu } from "next/font/google";
 import { SlowMo } from "gsap/EasePack";
 import { Button, Container, Grid, Typography, useColorScheme } from "@mui/joy";
 import { GitHub } from "@mui/icons-material";
-import {gsap, random} from "gsap/dist/gsap";
+import {gsap, random} from "gsap/src/gsap-core";
 
 
 
 gsap.registerPlugin(TextPlugin, SlowMo);
 
 const Title = Ubuntu({
-    subsets: ['latin'], 
-    display: 'swap', 
-    weight: "700", 
+    subsets: ['latin'],
+    display: 'swap',
+    weight: "700",
     preload: true
 });
 
@@ -58,7 +58,7 @@ const Home = () => {
                 ],
                 onComplete:()=>{
                     textP!.current.addEventListener("mouseover",()=>{
-                        tl.addLabel("exp", 4).fromTo("#explore",{ 
+                        tl.addLabel("exp", 4).fromTo("#explore",{
                             rotate: -5,
                         },{rotate: 0, ease: "power1.inOut"});
                     });
@@ -73,7 +73,7 @@ const Home = () => {
                     ]
                 },"grad+=1");
 
-                
+
 
             });
 

@@ -7,7 +7,7 @@ import {
     CssVarsProvider, getInitColorSchemeScript,
 } from '@mui/joy/styles';
 import {FC, ReactNode, useEffect} from "react";
-import {Box, CssBaseline, useColorScheme} from "@mui/joy";
+import {CssBaseline, useColorScheme} from "@mui/joy";
 import {
     experimental_extendTheme as extendMuiTheme,
 } from '@mui/material/styles';

@@ -9,15 +9,15 @@ import Footer from "@/components/Footer";
 const App:NextPage = () => {
     return (
         <>
-          <Header/>
+{/*          <Header/>
             <Home/>
             <main>
                 <Services/>
                 <Assets/>
                 <Contact/>
             </main>
-          <Footer/>
-
+          <Footer/>*/}
+ddddd
         </>
     )
 }

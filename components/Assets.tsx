@@ -1,7 +1,6 @@
 "use client";
 
-import { faSun } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCallback, useEffect, useState } from "react";
@@ -14,8 +13,9 @@ import login_img from "@/public/img/login.png";
 import bar from "@/public/img/slider.png";
 import ANIME_BREAKPOINTS from "@/utils/constants";
 import { ExpoScaleEase } from "gsap/EasePack";
-import {Box, Container, Grid, IconButton, Stack, Typography, useColorScheme as toggleTheme} from "@mui/joy";
+import {Container, Grid, IconButton, Stack, Typography, useColorScheme as toggleTheme} from "@mui/joy";
 import {DarkMode, LightMode} from "@mui/icons-material";
+import {Box} from "@mui/material";
 
 gsap.registerPlugin(ExpoScaleEase, ScrollTrigger);
 
@@ -195,7 +195,7 @@ return ()=>mAnime.revert();
 
 <IconButton onClick={()=>setMode(mode?"light":"dark")}
             className="theme_switch" sx={{
-    background: "primary.white",
+    background: "common.white",
     color: "secondary.main",
     position: "absolute",
     borderRadius: "50%",
@@ -210,8 +210,7 @@ return ()=>mAnime.revert();
     visibility: "hidden"
 }}>
     {mode||systemMode==="dark"?
-    <LightMode/>:<DarkMode/>
-    }
+    <LightMode/>:<DarkMode/>}
 </IconButton>
 
 <Stack justifyContent="center" flexDirection={"row"}>
