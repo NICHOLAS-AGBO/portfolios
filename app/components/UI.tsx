@@ -1,30 +1,59 @@
-'use client';
+"use client";
 
 import { deepmerge } from '@mui/utils';
+import {
+    experimental_extendTheme as extendMuiTheme,
+} from '@mui/material/styles';
 import colors from '@mui/joy/colors';
 import {
     extendTheme as extendJoyTheme,
     CssVarsProvider, getInitColorSchemeScript,
 } from '@mui/joy/styles';
 import {FC, ReactNode, useEffect} from "react";
+<<<<<<< HEAD:app/components/UI.tsx
+import {Box, CssBaseline, useColorScheme} from "@mui/joy";
+=======
 import {CssBaseline, useColorScheme} from "@mui/joy";
 import {
     experimental_extendTheme as extendMuiTheme,
 } from '@mui/material/styles';
 import {DefaultColorScheme, ExtendedColorScheme} from "@mui/joy/styles/types";
+>>>>>>> 73b91e0c617e3bc18ace378cc6b8285217bf21ec:components/UI.tsx
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
+
     cssVarPrefix: 'mui-joy',
     colorSchemes: {
         light: {
             palette: {
                 primary: {
-                    main: colors.blue[400],
+                    main: colors.blue[600],
+                },
+                secondary:{
+                    main: "#ff8c00"
                 },
                 grey: colors.grey,
-                secondary:{
-                    main: "#e6990c"
-                }
+                error: {
+                    main: colors.red[500],
+                },
+                info: {
+                    main: colors.purple[500],
+                },
+                success: {
+                    main: colors.green[500],
+                },
+                warning: {
+                    main: colors.yellow[200],
+                },
+                common: {
+                    white: '#FFF',
+                    black: '#09090D',
+                },
+                divider: colors.grey[200],
+                text: {
+                    primary: colors.grey[800],
+                    secondary: colors.grey[600],
+                },
             },
         },
         dark: {
@@ -32,16 +61,37 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
                 primary: {
                     main: colors.blue[500],
                 },
-                grey: colors.grey,
                 secondary:{
-                    main: "#ff8d00"
-                }
+                    main: "#ec9f12"
+                },
+                grey: colors.grey,
+                error: {
+                    main: colors.red[600],
+                },
+                info: {
+                    main: colors.purple[600],
+                },
+                success: {
+                    main: colors.green[600],
+                },
+                warning: {
+                    main: colors.yellow[300],
+                },
+                common: {
+                    white: '#FFF',
+                    black: '#09090D',
+                },
+                divider: colors.grey[800],
+                text: {
+                    primary: colors.grey[100],
+                    secondary: colors.grey[300],
+                },
             },
         },
     },
 });
 
-const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendJoyTheme();
+const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendJoyTheme({cssVarPrefix: "mui-joy"});
 
 const mergedTheme = ({
     ...muiTheme,
@@ -53,12 +103,13 @@ const mergedTheme = ({
     }
 } as unknown) as ReturnType<typeof extendJoyTheme>;
 
-//@ts-ignore
-mergedTheme.generateCssVars = (colorScheme?:(DefaultColorScheme|ExtendedColorScheme)) => ({
+
+mergedTheme.generateCssVars = (colorScheme) => ({
     css: {
         ...muiTheme.generateCssVars(colorScheme).css,
         ...joyTheme.generateCssVars(colorScheme).css
     },
+    //@ts-ignore
     vars: deepmerge(
         muiTheme.generateCssVars(colorScheme).vars,
         joyTheme.generateCssVars(colorScheme).vars
@@ -80,11 +131,10 @@ const UIBody:FC<{children:ReactNode}> = ({children})=>{
 
     }, [systemMode, mode]);
 
-   return <Box sx={{background: (theme)=>( mode||systemMode==="dark"? colors.grey[800]:theme.palette.common.white )}}>
+    return <>
         {children}
-    </Box>
+    </>
 }
-
 
 export default function UI ({children}:{children:ReactNode}){
     return <CssVarsProvider theme={mergedTheme} defaultMode="system" disableNestedContext>

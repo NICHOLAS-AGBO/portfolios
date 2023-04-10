@@ -1,7 +1,7 @@
 import './globals.css'
 import React from "react";
 import {Metadata} from "next";
-import UI from "@/components/UI";
+import UI from "@/app/components/UI";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Roboto } from "next/font/google";
 
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
 const font = Roboto({
   subsets: ['latin'], 
   display: 'swap', 
-  weight: "500", 
+  weight: "400",
   preload: true, 
   variable: "--fsText",
-  fallback: ["var(--nextui-fonts-sans)"]
+  fallback: ['var(--mui-joy-fontFamily-body)']
 });
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={font.className} style={{overflowX: "hidden"}}>
       <UI>
         {children}
       </UI>

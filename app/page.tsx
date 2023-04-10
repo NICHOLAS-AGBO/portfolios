@@ -1,10 +1,7 @@
 import {NextPage} from "next";
-import Home from "@/components/Home";
-import Services from "@/components/Services";
-import Assets from "@/components/Assets";
-import Contact from "@/components/Contact";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import Home from "@/app/components/Home";
 
 const App:NextPage = () => {
     return (
@@ -12,12 +9,16 @@ const App:NextPage = () => {
 {/*          <Header/>
             <Home/>
             <main>
-                <Services/>
-                <Assets/>
-                <Contact/>
+                {/*<Services/>*/}
+                {/*<Assets/>*/}
+                {/*<Contact/>*/}
             </main>
+<<<<<<< HEAD
+          <Footer/>
+=======
           <Footer/>*/}
 ddddd
+>>>>>>> 73b91e0c617e3bc18ace378cc6b8285217bf21ec
         </>
     )
 }
