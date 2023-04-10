@@ -1,11 +1,7 @@
 {
   "private": true,
   "scripts": {
-<<<<<<< HEAD
     "dev": "next dev --turbo",
-=======
-    "dev": "next dev --port=4000 --turbo",
->>>>>>> 73b91e0c617e3bc18ace378cc6b8285217bf21ec
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -25,7 +21,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-<<<<<<< HEAD
     "@mui/icons-material": "5.11.16",
     "@mui/joy": "5.0.0-alpha.74",
     "@mui/material": "5.11.16",
@@ -44,22 +39,5 @@
     "eslint": "8.19.0",
     "eslint-config-next": "latest",
     "typescript": "4.7.4"
-=======
-    "@mui/icons-material": "^5.11.16",
-    "@mui/joy": "^5.0.0-alpha.74",
-    "@mui/material": "^5.11.16",
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.33",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.38.0",
-    "eslint-config-next": "^13.3.0",
-    "framer-motion": "^10.11.2",
-    "gsap": "./gsap.tgz",
-    "next": "^13.3.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "three": "^0.151.2",
-    "typescript": "5.0.4"
->>>>>>> 73b91e0c617e3bc18ace378cc6b8285217bf21ec
   }
 }
