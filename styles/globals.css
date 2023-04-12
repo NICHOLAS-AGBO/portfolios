@@ -17,3 +17,7 @@ img,canvas{
 .invisible{
     visibility: hidden;
 }
+
+.body{
+    overflow-x: hidden;
+}

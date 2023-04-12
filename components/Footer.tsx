@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
-    Box,
     Button,
     Container,
     Grid,
@@ -17,6 +16,7 @@ import {
 } from "@mui/joy";
 import colors from "@mui/joy/colors";
 import {Facebook, Instagram, KeyboardDoubleArrowUp, LinkedIn, Pinterest, Twitter} from "@mui/icons-material";
+import {Zoom} from "@mui/material";
 
 
 const FooterLink = styled(Link)(({theme})=>({
@@ -28,10 +28,10 @@ const FooterLink = styled(Link)(({theme})=>({
     "&:hover":{
         textDecoration: "underline",
     }
-}))
+}));
 
 
-const Footer = ()=>{
+export default function Footer(){
 const {mode,systemMode} = useColorScheme();
 const [show,setShow] = useState(false);
 
@@ -101,10 +101,10 @@ useEffect(()=>{
         More
     </Typography>
     <List aria-labelledby="more" size={"sm"}>
-        <ListItem><Tooltip color={"primary"} placement={"bottom"} title="Nicson Digital Concept">
+        <ListItem><Tooltip placement={"bottom"} title="Nicson Digital Concept" arrow>
             <FooterLink href={"https://ndcconcept.com"} target="_blank" referrerPolicy="no-referrer">NDCconcept</FooterLink></Tooltip></ListItem>
         <ListItem><FooterLink href={"https://aquila.com"} target="_blank" referrerPolicy="no-referrer">Aquila</FooterLink></ListItem>
-        <ListItem><Tooltip color={"primary"} placement={"bottom"} title="Dika Dika">
+        <ListItem><Tooltip placement={"bottom"} title="Dika Dika" arrow>
             <FooterLink href={"https://dsqr.com"} target="_blank" referrerPolicy="no-referrer">Dsqr</FooterLink></Tooltip></ListItem>
     </List>
 </Grid>
@@ -114,24 +114,24 @@ useEffect(()=>{
 </Grid>
 
 
-            {
-                show&&
-                    
-            <Button onClick={moveUP} color={"primary"} sx={{
-                width: 40,
-                height: 40,
-                p: "$5",
-                borderRadius: "$squared",
-                border: "solid 2px white",
-                shadow: "$xl",
-                position: "fixed",
-                zIndex: "$10",
-                bottom: 60,
-                right: 20,
-                color: "$text"
-            }}><KeyboardDoubleArrowUp/></Button>
-            
-            }
+                <Zoom in={show}>
+
+                    <Button onClick={moveUP} sx={{
+                        width: 40,
+                        height: 40,
+                        border: "solid 2px white",
+                        position: "fixed",
+                        zIndex: (theme)=>theme.zIndex.popup+1,
+                        bottom: 80,
+                        right: 20,
+                        backgroundColor: "secondary.main",
+                        "&:hover":{
+                            backgroundColor: "common.black",
+                            color: "secondary.main"
+                        }
+                    }}><KeyboardDoubleArrowUp/></Button>
+
+                </Zoom>
         </Container>
         
 <Stack justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={2} flexDirection={"row"}
@@ -171,4 +171,3 @@ sx={{background: "linear-gradient(90deg, #000 -10%, #222222, #000 110%)", p: 2, 
     );
 }
 
-export default Footer;

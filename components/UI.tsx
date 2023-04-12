@@ -1,5 +1,3 @@
-"use client";
-
 import { deepmerge } from '@mui/utils';
 import {
     experimental_extendTheme as extendMuiTheme,
@@ -9,16 +7,8 @@ import {
     extendTheme as extendJoyTheme,
     CssVarsProvider, getInitColorSchemeScript,
 } from '@mui/joy/styles';
-import {FC, ReactNode, useEffect} from "react";
-<<<<<<< HEAD:app/components/UI.tsx
-import {Box, CssBaseline, useColorScheme} from "@mui/joy";
-=======
+import {FC, ReactNode, useLayoutEffect} from "react";
 import {CssBaseline, useColorScheme} from "@mui/joy";
-import {
-    experimental_extendTheme as extendMuiTheme,
-} from '@mui/material/styles';
-import {DefaultColorScheme, ExtendedColorScheme} from "@mui/joy/styles/types";
->>>>>>> 73b91e0c617e3bc18ace378cc6b8285217bf21ec:components/UI.tsx
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
 
@@ -104,12 +94,12 @@ const mergedTheme = ({
 } as unknown) as ReturnType<typeof extendJoyTheme>;
 
 
+//@ts-ignore
 mergedTheme.generateCssVars = (colorScheme) => ({
     css: {
         ...muiTheme.generateCssVars(colorScheme).css,
         ...joyTheme.generateCssVars(colorScheme).css
     },
-    //@ts-ignore
     vars: deepmerge(
         muiTheme.generateCssVars(colorScheme).vars,
         joyTheme.generateCssVars(colorScheme).vars
@@ -121,22 +111,20 @@ mergedTheme.unstable_sxConfig = {
     ...joySxConfig
 };
 
-
 const UIBody:FC<{children:ReactNode}> = ({children})=>{
-    const {mode, systemMode} = useColorScheme();
-    useEffect(() => {
+    const {mode,systemMode} = useColorScheme();
+
+    useLayoutEffect(() => {
         if (mode||systemMode==="dark")
-            document.body.style.background = colors.grey[800];
+            document.body.style.background = "#25252d";
         else document.body.style.background = "#fff";
 
-    }, [systemMode, mode]);
+    });
 
-    return <>
-        {children}
-    </>
+    return <>{children}</>
 }
 
-export default function UI ({children}:{children:ReactNode}){
+const UI = ({children}:{children:ReactNode})=>{
     return <CssVarsProvider theme={mergedTheme} defaultMode="system" disableNestedContext>
         <CssBaseline/>
         {getInitColorSchemeScript({defaultMode: "system"})}
@@ -145,3 +133,5 @@ export default function UI ({children}:{children:ReactNode}){
         </UIBody>
     </CssVarsProvider>
 }
+
+export default UI;

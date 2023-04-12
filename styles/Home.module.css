@@ -1,0 +1,36 @@
+.cover {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navlogo{
+  width: 80px;
+  height: auto;
+}
+
+.ui_btn{
+  position: absolute;
+  top: 60px;
+  left: 25px;
+  z-index: 1;
+  width: 15%;
+  height: auto;
+}
+.ui_login{
+  position: absolute;
+  bottom: -15px;
+  right: 25px;
+  z-index: 1;
+  width: 20%;
+  height: auto;
+}
+.ui_bar{
+  position: absolute;
+  top: -15px;
+  left: 37%;
+  right: 50%;
+  z-index: 1;
+  width: 26%;
+  height: auto
+}

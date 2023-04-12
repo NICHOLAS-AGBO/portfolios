@@ -1,5 +1,3 @@
-"use client";
-
 import {CircularProgress, Container, Grid, Box} from "@mui/joy";
 
 
@@ -11,7 +9,7 @@ const Load = ()=>{
         position: "fixed", 
         top: 0,
         left: 0,
-        zIndex: (theme)=>theme.zIndex.modal+1000
+        zIndex: (theme)=>theme.zIndex.popup+100
         }}>
     <Grid container sx={{minHeight: "inherit"}} gap={1} justifyContent="center" alignItems="center">
     <Grid>

@@ -22,4 +22,5 @@ const ANIME_BREAKPOINTS:{[type:string]: string} = {
     reduceMotion: "(prefers-reduced-motion: reduce)"
 }
 
+
 export default ANIME_BREAKPOINTS;
