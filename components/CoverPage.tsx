@@ -77,7 +77,9 @@ const CoverPage = () => {
           <Stack textAlign={"center"} justifyContent={"center"} py={5} mx={"auto"} gap={3} minHeight={{xs: "90vh", md: "85vh"}}
                  maxWidth={900}>
 
-              <Typography level={"display1"} className={ubuntu.className}>
+              <Typography level={"display1"} sx={{
+                  typography: {xs: "h1", md: "display1"}
+              }} className={ubuntu.className}>
                   Get awesome <Typography ref={textP} id={"pText"} sx={{
                   backgroundClip: "text",
                   backgroundImage: '-webkit-linear-gradient(-35deg ,var(--mui-joy-palette-primary-main),var(--mui-joy-palette-secondary-main))',
@@ -85,7 +87,7 @@ const CoverPage = () => {
               }}>portfolios</Typography> for your projects.
               </Typography>
               <Typography textAlign={"center"} mx={"auto"}
-                          sx={{maxWidth: {md: 650}}}>
+                          sx={{maxWidth: {sm: 550, md: 650}}}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Mauris a interdum nibh. Vivamus non urna condimentum,
                   mattis dui. Vestibulum eu tellus eu odio posuere efficitur.

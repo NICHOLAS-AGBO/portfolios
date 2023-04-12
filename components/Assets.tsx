@@ -26,9 +26,21 @@ const Assets = () =>{
 
 
 
+
+    //UI Animation timeline
+    const tlUI = gsap.timeline({
+        scrollTrigger:{
+            trigger: "#uiCont",
+            start: "20 center",
+            end: "100%+=5%",
+            endTrigger: "#contact",
+            toggleActions: "play none restart none",
+        },
+    });
+
     // SCALE ANIMATION FOR SOME UI IMAGES
- const runBeat = useCallback(()=>{
-        gsap.timeline({defaults:{repeat: -1}}).fromTo(".beat",{
+    const runBeat = useCallback(()=>{
+        tlUI.fromTo(".beat",{
             duration: motion?0:.5,
             scale: .9,
         },{
@@ -37,36 +49,22 @@ const Assets = () =>{
             stagger: {
                 each: 2,
                 ease: "bounce",
-            }
+            },
+            repeat: -1
         },"ui_bar+=1")
             .to(".theme_switch",{
-                duration: 1,
-                ease: "expoScale(0.5, 3, power2.inOut)",
-                keyframes:[{rotate:0},{rotate: 360}]
+                duration: 5,
+                ease: "expoScale(0.5, 3, power2.out)",
+                keyframes:[{rotate: -360},{rotate: 0}],
+                repeat: -1
             },"end");
 
 
-    },[motion]);
-
-    //UI Animation timeline
-
-
+    },[motion, tlUI]);
 
     // ANIMATION FOR UI IMAGES
     useIsomorphicLayoutEffect(()=>{
         let screen:{[type:string]: boolean};
-
-        const tlUI = gsap.timeline({
-            autoRemoveChildren: true,
-            scrollTrigger:{
-                trigger: "#uiCont",
-                start: "20 center",
-                end: "100%+=5%",
-                endTrigger: "#contact",
-                toggleActions: "play none restart none",
-            },
-            onComplete: runBeat,
-        });
 
         const offset = [-10,0,-10];
         const mAnime = gsap.matchMedia("body")
@@ -138,7 +136,8 @@ const Assets = () =>{
                     //Switch for Theme
                     .addLabel("end")
                     .to(".theme_switch",{
-                        autoAlpha: 1
+                        autoAlpha: 1,
+                        onComplete: runBeat
                     },"ui3");
 
             });
@@ -203,7 +202,9 @@ const Assets = () =>{
                 <Grid sm={10} md={6}>
 
                     <Typography className="ui_title" level="display2"
-                                fontWeight={"sm"} sx={{textAlign: "center",}}></Typography>
+                                fontWeight={"sm"} sx={{textAlign: "center",}}>
+                        UI/UX
+                    </Typography>
 
                     <Typography>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aut doloribus in

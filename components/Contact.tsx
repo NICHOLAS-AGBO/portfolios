@@ -7,7 +7,7 @@ const Contact = ()=>{
 
 
     return(
-        <Container id="contact" maxWidth={"md"} sx={{
+        <Container id="contact" maxWidth={false} sx={{
             backgroundImage: mode||systemMode==="dark"?`linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)) ,url('${contactImg.src}')`
                 : `linear-gradient(rgba(255,255,255,.65),rgba(255,255,255.35)) ,url('${contactImg.src}')`,
             backgroundSize: "cover",
@@ -33,7 +33,7 @@ const Contact = ()=>{
                     <Button size={"lg"} sx={{
                         backgroundColor: (theme)=>theme.palette.text.primary,
                         borderColor: (theme)=>theme.palette.text.primary,
-                        color: "common.black",
+                        color: mode||systemMode==="dark"?"common.black":"common.white",
                         "&:hover":{
                             color: mode||systemMode==="dark"?"common.black":"common.white",
                             backgroundColor: mode||systemMode==="dark"?"common.white":"common.black",
