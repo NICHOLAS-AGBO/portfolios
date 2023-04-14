@@ -5,7 +5,6 @@ import {ArrowForward, GitHub} from "@mui/icons-material";
 import {Ubuntu} from "next/font/google";
 import TextPlugin from "gsap/dist/TextPlugin";
 import {SlowMo} from "gsap/dist/EasePack";
-import {useIsomorphicLayoutEffect} from "@/utils/helpers";
 
 
 const ubuntu = Ubuntu({
@@ -21,13 +20,13 @@ gsap.registerPlugin(TextPlugin, SlowMo);
 
 const CoverPage = () => {
     const textP = useRef<any>(null);
-    const {mode} = useColorScheme();
+    const {mode,systemMode} = useColorScheme();
 
 
     const randColor = gsap!.utils.random(["var(--mui-joy-palette-secondary-main)", "var(--mui-joy-palette-primary-main)", "var(--mui-joy-palette-purple-500)"]);
     const randText = gsap!.utils.random(["portfolios", "designs"]);
 
-    useIsomorphicLayoutEffect(() => {
+    useEffect(() => {
         const tl = gsap.timeline({
             defaults:{
                 duration: 2,
@@ -69,11 +68,11 @@ const CoverPage = () => {
 
         return () => anime.revert();
 
-    }, [mode]);
+    }, [mode, systemMode]);
 
     return(
       <Container maxWidth={false}
-                 sx={{borderBottom: mode==="dark"?"solid 1px rgba(255,255,255,.15)":"solid 1px lightgray"}}>
+                 sx={{borderBottom: (mode||systemMode)==="dark"?"solid 1px rgba(255,255,255,.15)":"solid 1px lightgray"}}>
           <Stack textAlign={"center"} justifyContent={"center"} py={5} mx={"auto"} gap={3} minHeight={{xs: "90vh", md: "85vh"}}
                  maxWidth={900}>
 

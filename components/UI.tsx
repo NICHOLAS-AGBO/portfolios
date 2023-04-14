@@ -8,7 +8,7 @@ import {
     CssVarsProvider, getInitColorSchemeScript,
 } from '@mui/joy/styles';
 import {FC, ReactNode, useLayoutEffect} from "react";
-import {CssBaseline, useColorScheme} from "@mui/joy";
+import {Box, CssBaseline, useColorScheme} from "@mui/joy";
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
 
@@ -44,6 +44,9 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
                     primary: colors.grey[800],
                     secondary: colors.grey[600],
                 },
+                body: {
+                    main: "#fff"
+                }
             },
         },
         dark: {
@@ -76,6 +79,9 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
                     primary: colors.grey[100],
                     secondary: colors.grey[300],
                 },
+                 body:{
+                    main: "#25252D"
+                 }
             },
         },
     },
@@ -115,13 +121,13 @@ const UIBody:FC<{children:ReactNode}> = ({children})=>{
     const {mode,systemMode} = useColorScheme();
 
     useLayoutEffect(() => {
-        if (mode||systemMode==="dark")
+        if ((mode||systemMode)==="dark")
             document.body.style.background = "#25252d";
         else document.body.style.background = "#fff";
 
-    });
+    },[mode, systemMode]);
 
-    return <>{children}</>
+    return <Box sx={{backgroundColor: "body.main"}}>{children}</Box>
 }
 
 const UI = ({children}:{children:ReactNode})=>{
@@ -133,5 +139,6 @@ const UI = ({children}:{children:ReactNode})=>{
         </UIBody>
     </CssVarsProvider>
 }
+
 
 export default UI;

@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import {Roboto} from "next/font/google";
 
 
+
 const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',

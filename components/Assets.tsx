@@ -1,4 +1,4 @@
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Image from "next/image";
 import ui_1 from "@/img/ui_1.png";
 import ui_2 from "@/img/ui_2.png";
@@ -14,14 +14,13 @@ import ANIME_BREAKPOINTS from "@/utils/constants";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { ExpoScaleEase } from "gsap/dist/EasePack";
 import gsap from "gsap/dist/gsap";
-import {useIsomorphicLayoutEffect} from "@/utils/helpers";
 
 
 gsap.registerPlugin(ExpoScaleEase, ScrollTrigger);
 const UI = [ui_1,ui_2,ui_3];
 
 const Assets = () =>{
-    const {setMode, mode} = toggleTheme();
+    const {setMode, mode, systemMode} = toggleTheme();
     const [motion,setMotion] = useState(false);
 
 
@@ -63,7 +62,7 @@ const Assets = () =>{
     },[motion, tlUI]);
 
     // ANIMATION FOR UI IMAGES
-    useIsomorphicLayoutEffect(()=>{
+    useEffect(()=>{
         let screen:{[type:string]: boolean};
 
         const offset = [-10,0,-10];
@@ -151,7 +150,7 @@ const Assets = () =>{
 
 
     return(
-        <Container maxWidth="lg" id={"uiCont"} sx={{py: 10}}>
+        <Container maxWidth="lg" id={"uiCont"} sx={{py: 16}}>
             <Grid container justifyContent="center" alignItems="center"
                   gap={2} rowGap={8} wrap={"wrap-reverse"} className="animeUI invisible">
 
@@ -165,9 +164,9 @@ const Assets = () =>{
                     <Image width={794} height={213} src={bar} alt={"ui_progressive_bar image"}
                            className={"ui_bar invisible beat "+style.ui_bar} />
 
-                    <IconButton onClick={()=>setMode((mode)==="dark"?"light":"dark")}
+                    <IconButton onClick={()=>setMode((mode||systemMode)==="dark"?"light":"dark")}
                                 className="theme_switch invisible" sx={{
-                        background: "common.white",
+                        backgroundColor: "body.main",
                         color: "secondary.main",
                         position: "absolute",
                         borderRadius: "50%",
@@ -181,7 +180,7 @@ const Assets = () =>{
                         zIndex: 1,
                         opacity: 0
                     }}>
-                        {mode==="dark"?
+                        {(mode||systemMode)==="dark"?
                             <LightMode/>:<DarkMode/>}
                     </IconButton>
 
