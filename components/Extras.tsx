@@ -23,7 +23,7 @@ const Extras = ()=>{
 
     return(
         <Container maxWidth={"lg"} sx={{py: 16}}>
-            <Grid container justifyContent={"space-around"}>
+            <Grid container justifyContent={"space-around"} spacing={5}>
                  <Grid xs={11} md={5.5} lg={5}>
                 <Link href={"#"} style={{textDecoration: "none"}}>
                     <Card variant={"outlined"}
