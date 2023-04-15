@@ -30,10 +30,9 @@ const Assets = () =>{
     const tlUI = gsap.timeline({
         scrollTrigger:{
             trigger: "#uiCont",
-            start: "20 center",
+            start: "20 bottom",
             end: "100%+=5%",
             endTrigger: "#contact",
-            toggleActions: "play none restart none",
         },
     });
 
@@ -128,7 +127,6 @@ const Assets = () =>{
                         ease: "slow( .1, -5)",
                         text:{
                             value: "UI/UX",
-                            preserveSpaces: true,
                         },
                     },screen.isMobile?"animeUI-=3":"ui1-=3")
 
