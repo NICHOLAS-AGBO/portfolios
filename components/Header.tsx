@@ -1,15 +1,23 @@
-"use client";
-
 import Link from "next/link";
-import { Stack } from "@mui/joy";
+import {Stack, styled, Switch, useColorScheme} from "@mui/joy";
 import {AppBar, Toolbar} from "@mui/material";
+import {DarkMode, LightMode} from "@mui/icons-material";
 
 
 export default function Header() {
+    const {mode, systemMode, setMode} = useColorScheme();
+    const isDark = (mode||systemMode)==='dark';
+    const NavLink = styled(Link)(({theme})=>({
+        textDecoration: "none",
+        color: "inherit",
+        "&:hover":{
+            textDecoration: ` ${theme.vars.palette.secondary.main} double underline !important`
+        }
+    }))
     return (
         <>
             <AppBar enableColorOnDark position="sticky">
-                <Toolbar>
+                <Toolbar sx={{gap: 2}}>
                     <Link href={"/"}>
                         <svg width="70" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80">
                             <path fill="#000"
@@ -35,19 +43,38 @@ export default function Header() {
                             </defs>
                         </svg>
                     </Link>
-                    <Stack flexGrow={1} flexDirection={"row"} alignItems={"center"} justifyContent={"flex-end"} gap={1}
+                    <Stack flexGrow={1} flexDirection={"row"} alignItems={"center"} justifyContent={"flex-end"} gap={2}
                            sx={{"&>a:hover": {textDecoration: "underline"}}}>
-                        <Link href={"/portfolios"} style={{color: "inherit"}}>
+                        <NavLink href={"/portfolios"}>
                             Portfolios
-                        </Link>
-                        <Link href={"/roadmap"} style={{color: "inherit"}}>
+                        </NavLink>
+                        <NavLink href={"/roadmap"}>
                             Roadmap
-                        </Link>
-                        <Link href={"/about"} style={{color: "inherit"}}>
+                        </NavLink>
+                        <NavLink href={"/about"}>
                             About us
-                        </Link>
+                        </NavLink>
                     </Stack>
-
+                    <Switch
+                        checked={isDark}
+                        onChange={()=>setMode(isDark?"light":"dark")}
+                        slotProps={{
+                            track: {
+                                children: (
+                                    <>
+                                        <LightMode sx={{ml: 1}}/>
+                                        <DarkMode sx={{mr: 1, color: "secondary.main"}}/>
+                                    </>
+                                ),
+                            },
+                        }}
+                        sx={{
+                            '--Switch-thumbSize': '25px',
+                            '--Switch-trackWidth': '60px',
+                            '--Switch-trackHeight': '31px',
+                            '--Switch-trackBackground': '#25252d',
+                        }}
+                    />
                 </Toolbar>
             </AppBar>
         </>

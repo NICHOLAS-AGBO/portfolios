@@ -25,12 +25,11 @@ const Assets = () =>{
 
 
 
-
     //UI Animation timeline
     const tlUI = gsap.timeline({
         scrollTrigger:{
             trigger: "#uiCont",
-            start: "20 bottom",
+            start: "20 center",
             end: "100%+=5%",
             endTrigger: "#contact",
         },
@@ -144,7 +143,7 @@ const Assets = () =>{
 
         return ()=>mAnime.revert();
 
-    });
+    },[]);
 
 
     return(

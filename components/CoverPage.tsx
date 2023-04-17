@@ -2,14 +2,13 @@ import {useEffect, useRef} from "react";
 import {Button, Container, Stack, Typography, useColorScheme} from "@mui/joy";
 import gsap from "gsap";
 import {ArrowForward, GitHub} from "@mui/icons-material";
-import {Ubuntu} from "next/font/google";
+import {Ubuntu, Ubuntu_Mono} from "next/font/google";
 import TextPlugin from "gsap/dist/TextPlugin";
 import {SlowMo} from "gsap/dist/EasePack";
 
 
-const ubuntu = Ubuntu({
+const ubuntu = Ubuntu_Mono({
     display: "swap",
-    preload: true,
     weight: "700",
     subsets: ["latin"],
     variable: "--ubuntu-font",
@@ -23,7 +22,6 @@ const CoverPage = () => {
     const {mode,systemMode} = useColorScheme();
 
 
-    const randColor = gsap!.utils.random(["var(--mui-joy-palette-secondary-main)", "var(--mui-joy-palette-primary-main)", "var(--mui-joy-palette-purple-500)"]);
     const randText = gsap!.utils.random(["portfolios", "designs"]);
 
     useEffect(() => {
@@ -52,15 +50,7 @@ const CoverPage = () => {
                             ease: "slow(0.5, 0.8, true)",
                             backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-secondary-dark) 70%", duration: 5},
                     ]
-                })
-                .addLabel("line",2)
-                .set(textP!.current,{
-                    textDecoration: `${randColor} wavy underline`,
-                    keyframes: [
-                        {textDecoration: `var(--mui-joy-palette-secondary-main) wavy underline`, duration: .5},
-                        {textDecoration: `var(--mui-joy-palette-primary-main) wavy underline`, duration: .5, delay: 1},
-                    ]
-                },"grad+=1");
+                });
 
 
 
@@ -77,7 +67,7 @@ const CoverPage = () => {
                  maxWidth={900}>
 
               <Typography level={"display1"} sx={{
-                  typography: {xs: "h1", md: "display1"}
+                  typography: {xs: "display2", md: "display1"}
               }} className={ubuntu.className}>
                   Get awesome <Typography ref={textP} id={"pText"} sx={{
                   backgroundClip: "text",

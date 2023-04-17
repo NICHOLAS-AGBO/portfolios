@@ -3,13 +3,13 @@ import contactImg from "@/img/black_man_on_laptop.png";
 
 const Contact = ()=>{
     const {mode, systemMode} = useColorScheme();
-    const isDark = (mode||systemMode);
+    const isDark = (mode||systemMode)==="dark";
 
 
     return(
             <Container id="contact" maxWidth={false} sx={{
-                background: isDark==="dark"?`linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)) ,url('${contactImg.src}')`
-                    : `linear-gradient(rgba(255,255,255,.65),rgba(255,255,255.35)) ,url('${contactImg.src}')`,
+                background: isDark?`linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)) ,url('${contactImg.src}')`
+                    : `linear-gradient(rgba(255,255,255,.65),rgba(255,255,255,.35)) ,url('${contactImg.src}')`,
                 backgroundSize: "cover",
                 backgroundPositionY: "100%"
             }}>
@@ -34,10 +34,10 @@ const Contact = ()=>{
                         <Button size={"lg"} sx={{
                             backgroundColor: (theme)=>theme.palette.text.primary,
                             borderColor: (theme)=>theme.palette.text.primary,
-                            color: isDark==="dark"?"common.black":"common.white",
+                            color: isDark?"common.black":"common.white",
                             "&:hover":{
-                                color: isDark==="dark"?"common.black":"common.white",
-                                backgroundColor: isDark==="dark"?"common.white":"common.black",
+                                color: isDark?"common.black":"common.white",
+                                backgroundColor: isDark?"common.white":"common.black",
 
                             }
                         }}>Contact us</Button>

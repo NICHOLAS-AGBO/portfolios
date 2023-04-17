@@ -2,11 +2,11 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import UI from "@/components/UI";
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import {Roboto} from "next/font/google";
+import {Ubuntu} from "next/font/google";
 
 
 
-const roboto = Roboto({
+const roboto = Ubuntu({
   subsets: ['latin'],
   display: 'swap',
   weight: "400",
