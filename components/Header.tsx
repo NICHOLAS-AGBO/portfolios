@@ -2,21 +2,40 @@ import Link from "next/link";
 import {Stack, styled, Switch, useColorScheme} from "@mui/joy";
 import {AppBar, Toolbar} from "@mui/material";
 import {DarkMode, LightMode} from "@mui/icons-material";
+import {useEffect, useState} from "react";
 
 
 export default function Header() {
     const {mode, systemMode, setMode} = useColorScheme();
+    const [color, setColor] = useState(false);
     const isDark = (mode||systemMode)==='dark';
     const NavLink = styled(Link)(({theme})=>({
         textDecoration: "none",
-        color: "inherit",
+        ...theme.typography.subtitle1,
+        color: isDark?theme.vars.palette.common.white:theme.vars.palette.common.black,
         "&:hover":{
             textDecoration: ` ${theme.vars.palette.secondary.main} double underline !important`
         }
-    }))
+    }));
+
+    useEffect(() => {
+        const nav = document.querySelector('header');
+        nav!.style.background= "transparent";
+
+        window.addEventListener('scroll', ()=>{
+            if (scrollY>nav!.clientHeight){
+                nav!.style.cssText=`background: var(--AppBar-background)`;
+                setColor(true);
+            }else {
+                nav!.style.background = "transparent";
+                setColor(false);
+            }
+        });
+    },[]);
+
     return (
         <>
-            <AppBar enableColorOnDark position="sticky">
+            <AppBar enableColorOnDark position="sticky" elevation={0} >
                 <Toolbar sx={{gap: 2}}>
                     <Link href={"/"}>
                         <svg width="70" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80">
@@ -45,13 +64,13 @@ export default function Header() {
                     </Link>
                     <Stack flexGrow={1} flexDirection={"row"} alignItems={"center"} justifyContent={"flex-end"} gap={2}
                            sx={{"&>a:hover": {textDecoration: "underline"}}}>
-                        <NavLink href={"/portfolios"}>
+                        <NavLink sx={{color: color?"common.white":isDark?"common.white":"common.black"}} href={"/portfolios"}>
                             Portfolios
                         </NavLink>
-                        <NavLink href={"/roadmap"}>
+                        <NavLink sx={{color: color?"common.white":isDark?"common.white":"common.black"}} href={"/roadmap"}>
                             Roadmap
                         </NavLink>
-                        <NavLink href={"/about"}>
+                        <NavLink sx={{color: color?"common.white":isDark?"common.white":"common.black"}} href={"/about"}>
                             About us
                         </NavLink>
                     </Stack>

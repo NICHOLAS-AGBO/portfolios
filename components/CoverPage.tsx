@@ -2,18 +2,10 @@ import {useEffect, useRef} from "react";
 import {Button, Container, Stack, Typography, useColorScheme} from "@mui/joy";
 import gsap from "gsap";
 import {ArrowForward, GitHub} from "@mui/icons-material";
-import {Ubuntu, Ubuntu_Mono} from "next/font/google";
+import {Ubuntu_Condensed} from "next/font/google";
 import TextPlugin from "gsap/dist/TextPlugin";
 import {SlowMo} from "gsap/dist/EasePack";
 
-
-const ubuntu = Ubuntu_Mono({
-    display: "swap",
-    weight: "700",
-    subsets: ["latin"],
-    variable: "--ubuntu-font",
-    fallback: ["var(--mui-joy-fontFamily-display)"]
-});
 
 gsap.registerPlugin(TextPlugin, SlowMo);
 
@@ -68,7 +60,7 @@ const CoverPage = () => {
 
               <Typography level={"display1"} sx={{
                   typography: {xs: "display2", md: "display1"}
-              }} className={ubuntu.className}>
+              }} fontWeight={900}>
                   Get awesome <Typography ref={textP} id={"pText"} sx={{
                   backgroundClip: "text",
                   backgroundImage: '-webkit-linear-gradient(-35deg ,var(--mui-joy-palette-primary-main),var(--mui-joy-palette-secondary-main))',
