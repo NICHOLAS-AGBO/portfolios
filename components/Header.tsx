@@ -20,7 +20,6 @@ export default function Header() {
 
     useEffect(() => {
         const nav = document.querySelector('header');
-        nav!.style.background= "transparent";
 
         window.addEventListener('scroll', ()=>{
             if (scrollY>nav!.clientHeight){
@@ -35,7 +34,7 @@ export default function Header() {
 
     return (
         <>
-            <AppBar enableColorOnDark position="sticky" elevation={0} >
+            <AppBar enableColorOnDark position="sticky" elevation={0} sx={{background: 'transparent'}}>
                 <Toolbar sx={{gap: 2}}>
                     <Link href={"/"}>
                         <svg width="70" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80">

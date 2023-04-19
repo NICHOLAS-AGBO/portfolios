@@ -18,7 +18,6 @@ const Contact = ()=>{
                     border: "2px common.white solid",
                     mx: "auto"
                 }}>
-
                     <Grid>
                         <Typography level="h1"
                                     fontWeight={"sm"}

@@ -7,8 +7,9 @@ import {
     extendTheme as extendJoyTheme,
     CssVarsProvider, getInitColorSchemeScript,
 } from '@mui/joy/styles';
-import {FC, ReactNode, useLayoutEffect} from "react";
+import {FC, ReactNode, useEffect} from "react";
 import {Box, CssBaseline, useColorScheme} from "@mui/joy";
+import {useRouter} from "next/router";
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
 
@@ -119,21 +120,22 @@ mergedTheme.unstable_sxConfig = {
 
 const UIBody:FC<{children:ReactNode}> = ({children})=>{
     const {mode,systemMode} = useColorScheme();
+    const {prefetch} = useRouter();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if ((mode||systemMode)==="dark")
             document.body.style.background = "#25252d";
         else document.body.style.background = "#fff";
-
+       void prefetch('/');
     },[mode, systemMode]);
 
     return <Box sx={{backgroundColor: "body.main"}}>{children}</Box>
 }
 
 const UI = ({children}:{children:ReactNode})=>{
-    return <CssVarsProvider theme={mergedTheme} defaultMode="system" disableNestedContext>
+    return <CssVarsProvider theme={mergedTheme} defaultMode={"system"||"dark"} disableNestedContext>
         <CssBaseline/>
-        {getInitColorSchemeScript({defaultMode: "system"})}
+        {getInitColorSchemeScript({defaultMode: "system"||"dark"})}
         <UIBody>
             {children}
         </UIBody>

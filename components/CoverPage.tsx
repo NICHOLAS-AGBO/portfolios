@@ -5,6 +5,7 @@ import {ArrowForward, GitHub} from "@mui/icons-material";
 import {Ubuntu_Condensed} from "next/font/google";
 import TextPlugin from "gsap/dist/TextPlugin";
 import {SlowMo} from "gsap/dist/EasePack";
+import {Power4} from "gsap/dist/gsap";
 
 
 gsap.registerPlugin(TextPlugin, SlowMo);
@@ -24,8 +25,10 @@ const CoverPage = () => {
 
         const anime = gsap.context(()=>{
             tl.addLabel("start",1)
+                .from('.textScale', {scale: .7, y: -50, autoAlpha: 0.2, duration: 3, ease: Power4.easeInOut})
+                .addLabel('typing', 2)
                 .fromTo(textP!.current,{
-                    duration: 5,
+                    duration: 3,
                     text: {
                         value: randText,
                         preserveSpaces: true
@@ -33,16 +36,17 @@ const CoverPage = () => {
                     ease: "power1.inOut"
                 },{
                     repeat: -1,
+                    repeatDelay: 5,
                     backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-primary-main)",
                     keyframes: [
                         {text: {value: "designs", preserveSpaces: true},
                             ease: "power3.in",
                             backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-primary-light)", duration: 5},
-                        {text: {value: "portfolios", preserveSpaces: true}, delay: 2,
+                        {text: {value: "portfolios", preserveSpaces: true}, delay: 3,
                             ease: "slow(0.5, 0.8, true)",
                             backgroundImage: "linear-gradient(35deg, var(--mui-joy-palette-secondary-main) 50%, var(--mui-joy-palette-secondary-dark) 70%", duration: 5},
                     ]
-                });
+                },'typing+=1');
 
 
 
@@ -60,7 +64,7 @@ const CoverPage = () => {
 
               <Typography level={"display1"} sx={{
                   typography: {xs: "display2", md: "display1"}
-              }} fontWeight={900}>
+              }} fontWeight={900} className={"textScale"}>
                   Get awesome <Typography ref={textP} id={"pText"} sx={{
                   backgroundClip: "text",
                   backgroundImage: '-webkit-linear-gradient(-35deg ,var(--mui-joy-palette-primary-main),var(--mui-joy-palette-secondary-main))',
